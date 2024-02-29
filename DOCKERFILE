@@ -1,8 +1,16 @@
 FROM php:8-apache
 
-COPY app/ /var/www/html
-
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y curl git zip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN cd /var/www/html/ && composer install
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN a2enmod rewrite
+
+CMD ["apache2-foreground"]
+
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY app/ /var/www/html
 
 EXPOSE 85

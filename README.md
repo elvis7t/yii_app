@@ -1,58 +1,60 @@
-# Web Development Environment with Docker
+<p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
+    <h1 align="center">Yii 2 Advanced Project Template</h1>
+    <br>
+</p>
 
-##PHP 
-##APACHE
-##MYSQL
-##PHPMYADMIN
+Yii 2 Advanced Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
+developing complex Web applications with multiple tiers.
 
-With this environment it is possible to access a web service such as a website, for example, with a persistent Mysql database and access to the mysql graphical interface
+The template includes three tiers: front end, back end, and console, each of which
+is a separate Yii application.
 
-## To access the environment follow the steps below:
+The template is designed to work in a team development environment. It supports
+deploying the application in different environments.
 
-1º clone the repository in your folder
- - https://github.com/elvis7t/DOCKER_BASE.git
- 
-2º Inside the DOCKER_BASE folder run the command 
- - docker-compose up -d 
- 
-3º Access the containers
+Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
- php-container
- - http://localhost:85/view/index.php
+[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
+[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
+[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
 
- phpmyadmin(Interface Mysql)
- - http://localhost:8080/index.php
-    
-    Server: msql
-    
-    User: db_user
-    
-    Password: db_pass
+DIRECTORY STRUCTURE
+-------------------
 
- ## To adjust this environment to your needs, follow the steps below:
-  
-   ##Database
-    Change the following files:
-    db/sql/init-database.sh change the name of the bank that is like "useacabeca"
-    and in docker-compose.yaml line 24
-
-    In order for your ready-made database to be exported and instantiated:
-    
-    In the db/sql/001-create-database.sql folder I suggest exporting the already created database to a .sql file,
-    then change its name to 001-create-tables.sql and replace it in the folder.
-    
-    Remove the containers and delete the db/data folder before running docker-compose up -d again
-    
-
-    ##Folder with your web system
-    The system folder if changed to one containing html, php etc files..
-    it is necessary to change in 2 places, because this name is the reference, so change it in:
-    
-    DOCKERFILE line 3
-    docker-compose.yaml line 12
-
-
-
-
-
-
+```
+common
+    config/              contains shared configurations
+    mail/                contains view files for e-mails
+    models/              contains model classes used in both backend and frontend
+    tests/               contains tests for common classes    
+console
+    config/              contains console configurations
+    controllers/         contains console controllers (commands)
+    migrations/          contains database migrations
+    models/              contains console-specific model classes
+    runtime/             contains files generated during runtime
+backend
+    assets/              contains application assets such as JavaScript and CSS
+    config/              contains backend configurations
+    controllers/         contains Web controller classes
+    models/              contains backend-specific model classes
+    runtime/             contains files generated during runtime
+    tests/               contains tests for backend application    
+    views/               contains view files for the Web application
+    web/                 contains the entry script and Web resources
+frontend
+    assets/              contains application assets such as JavaScript and CSS
+    config/              contains frontend configurations
+    controllers/         contains Web controller classes
+    models/              contains frontend-specific model classes
+    runtime/             contains files generated during runtime
+    tests/               contains tests for frontend application
+    views/               contains view files for the Web application
+    web/                 contains the entry script and Web resources
+    widgets/             contains frontend widgets
+vendor/                  contains dependent 3rd-party packages
+environments/            contains environment-based overrides
+```
