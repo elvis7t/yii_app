@@ -44,14 +44,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
+        
+        'urlManager' => [           
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'enableStrictParsing' => false,
+            'rules' => require(__DIR__ . '/url.php'),
         ],
-        */
+        
     ],
     'params' => $params,
 ];
