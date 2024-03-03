@@ -46,7 +46,7 @@ $config = [
         'db' => $db,
         
         'urlManager' => [   
-            'baseUrl' => '/web',
+            // 'baseUrl' => '',
             'enablePrettyUrl' => true,
             'showScriptName' => false,            
             'rules' => require(__DIR__ . '/url.php'),

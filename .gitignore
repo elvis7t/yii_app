@@ -1,4 +1,1 @@
-/db
-db/data/auto.cnf
-db/data/mysql.sock
-db/data/binlog.index
+/db/data
