@@ -11,7 +11,7 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-enable mysqli \
     && a2enmod rewrite
 
-COPY  vhost.conf /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/web|' /etc/apache2/sites-available/000-default.conf
 
 RUN a2ensite 000-default.conf
 

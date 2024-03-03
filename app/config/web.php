@@ -45,10 +45,10 @@ $config = [
         ],
         'db' => $db,
         
-        'urlManager' => [   
-            // 'baseUrl' => '',
+        'urlManager' => [               
             'enablePrettyUrl' => true,
-            'showScriptName' => false,            
+            'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => require(__DIR__ . '/url.php'),
         ],
         
