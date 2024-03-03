@@ -61,10 +61,6 @@ class HelpController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->db->getQueryBuilder();
-        echo "<pre>";
-        var_dump( Yii::$app->db->getQueryBuilder());
-        exit();
         return $this->render('index');
     }
 
