@@ -128,6 +128,6 @@ class SiteController extends Controller
     
     public function actionPrivacyPolicy()
     {
-        return $this->render('privacy-policy');
+        return $this->render('privacyPolicy');
     }
 }
