@@ -6,3 +6,6 @@ como ataques de script entre sites.
 
 # Html::a('Label name', Url::to(['controoler/action']))
 Cria a tag <a>
+
+# comando de criar migration declarativa
+php yii migrate/create create_project_table --fields="name:string:notNull,tech_stach:text:notNull,description:text:notNull,start_date:integer:notNull,end_date:integer"

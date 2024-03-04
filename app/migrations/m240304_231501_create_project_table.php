@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%project}}`.
  */
-class m240304_114814_create_project_table extends Migration
+class m240304_231501_create_project_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -15,9 +15,10 @@ class m240304_114814_create_project_table extends Migration
         $this->createTable('{{%project}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'tech_stack' => $this->text()->notNull(),
+            'tech_stach' => $this->text()->notNull(),
             'description' => $this->text()->notNull(),
-            
+            'start_date' => $this->integer()->notNull(),
+            'end_date' => $this->integer(),
         ]);
     }
 
