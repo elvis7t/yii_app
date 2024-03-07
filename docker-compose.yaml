@@ -1,5 +1,17 @@
 version: '3.7'
 services:
+  advanced:
+      container_name: painel-container
+      build:
+        context: ./
+        dockerfile: advanced/DOCKERFILE
+      restart: always
+      ports:
+        - 82:80
+      volumes:
+        - ./advanced:/app    
+      networks:
+        - docker  
   web:
     container_name: yii-container
     build:
