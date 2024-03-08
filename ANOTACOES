@@ -13,3 +13,9 @@ php yii migrate/create create_project_table --fields="name:string:notNull,tech_s
 # GII
 Para gerar varias paginas de na view separe por virgulas ou espaços
 ex: index, i-am-starting-a-blog, how-to-use-gii
+
+# test
+>_ codecept build
+>_ codecept generate:suite acceptance  -c backend
+>_ composer require codeception/module-webdriver --dev
+>_ codecept run -c backend --steps --xml --html 
