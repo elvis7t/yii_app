@@ -19,3 +19,8 @@ ex: index, i-am-starting-a-blog, how-to-use-gii
 >_ codecept generate:suite acceptance  -c backend
 >_ composer require codeception/module-webdriver --dev
 >_ codecept run -c backend --steps --xml --html 
+
+# AdminLte Template
+>_ composer require "hail812/yii2-adminlte3=~1.1"
+Copie os arquivos de @vendor/hail812/yii2-adminlte3/src/views para @app/views e edite.
+Abra o gerador CRUD e você verá que no campo Code Templatedo formulário apareceu o próprio template.
