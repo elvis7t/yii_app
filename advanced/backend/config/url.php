@@ -7,7 +7,11 @@ return [
     'login' => 'site/login',
     'logout' => 'site/logout',
     '' => 'site/index',
-    'project'=> 'project/index',
+    'project/index'=> 'project/index',
+    'project/create'=> 'project/create',
+    'project/update/<id:\d+>' => 'project/update',
+    'project/delete/<id:\d+>' => 'project/delete',
+    'project/view/<id:\d+>' => 'project/view',
     // 'project'=> 'project/create'
 
     // 'POST register' => 'site/register'

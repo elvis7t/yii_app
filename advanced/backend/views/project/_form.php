@@ -20,13 +20,13 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'start_date')->widget(DatePicker::class, [
-        'language' => 'Pt-br',
-        'dateFormat' => 'dd--mm-yy',
+       'language' => 'pt-BR',
+       'dateFormat' => 'yyyy-MM-dd'
     ]) ?>
 
     <?= $form->field($model, 'end_date')->widget(DatePicker::class, [
-        'language' => 'Pt-br',
-        'dateFormat' => 'dd--mm-yy',
+       'language' => 'pt-BR',
+       'dateFormat' => 'yyyy-MM-dd'
     ]) ?>
 
     <div class="form-group">

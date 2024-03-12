@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -17,12 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-12">
-                            <?= Html::a(Yii::t('app', 'Create Project'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('app', 'Create Project'), [Url::to(['project/create'])], ['class' => 'btn btn-success']) ?>
                         </div>
                     </div>
 
 
-                    <?= $this->render('_search', ['model' => $searchModel]); ?>
+                    <!--<?= $this->render('_search', ['model' => $searchModel]); ?>
 
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,

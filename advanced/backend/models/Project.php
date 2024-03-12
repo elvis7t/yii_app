@@ -3,6 +3,9 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "project".
@@ -23,7 +26,7 @@ class Project extends \yii\db\ActiveRecord
     {
         return 'project';
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -32,7 +35,7 @@ class Project extends \yii\db\ActiveRecord
         return [
             [['name', 'tech_stach', 'description', 'start_date'], 'required'],
             [['tech_stach', 'description'], 'string'],
-            [['start_date', 'end_date'], 'date'],
+            // [['start_date', 'end_date'], 'timestamp'],
             [['name'], 'string', 'max' => 255],
         ];
     }
