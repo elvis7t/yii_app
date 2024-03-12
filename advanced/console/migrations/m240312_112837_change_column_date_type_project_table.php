@@ -12,8 +12,8 @@ class m240312_112837_change_column_date_type_project_table extends Migration
      */
     public function safeUp()
     {
-        $this->alterColumn('project', 'start_date', $this->date());
-        $this->alterColumn('project', 'end_date', $this->date());
+        $this->alterColumn('project', 'start_date', $this->timestamp());
+        $this->alterColumn('project', 'end_date', $this->timestamp());
         return true;
     }
 
