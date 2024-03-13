@@ -21,7 +21,7 @@ class ProjectController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -65,9 +65,20 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $model = new Project();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index');
+       
+        if ($model->load(Yii::$app->request->post())) {    
+            
+            if (!empty($model->start_date)) {
+                $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
+            }
+            if (!empty($model->end_date)) {
+           
+                $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
+            }
+            
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [

@@ -33,9 +33,8 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'tech_stach', 'description', 'start_date'], 'required'],
-            [['tech_stach', 'description'], 'string'],
-            // [['start_date', 'end_date'], 'timestamp'],
+            [['name', 'tech_stach', 'description', 'start_date', 'end_date'], 'required'],
+            [['tech_stach', 'description'], 'string'],            
             [['name'], 'string', 'max' => 255],
         ];
     }

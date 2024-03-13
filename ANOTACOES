@@ -24,3 +24,13 @@ ex: index, i-am-starting-a-blog, how-to-use-gii
 >_ composer require "hail812/yii2-adminlte3=~1.1"
 Copie os arquivos de @vendor/hail812/yii2-adminlte3/src/views para @app/views e edite.
 Abra o gerador CRUD e você verá que no campo Code Templatedo formulário apareceu o próprio template.
+
+#DataPicker yii2-jui
+yii2-jui
+https://www.yiiframework.com/extension/yiisoft/yii2-jui
+https://www.yiiframework.com/extension/yiisoft/yii2-jui/doc/api/2.0
+
+#Widget demos.krajee
+https://demos.krajee.com/
+https://demos.krajee.com/editors#sn-demo
+>_ composer require kartik-v/yii2-editors "dev-master"
