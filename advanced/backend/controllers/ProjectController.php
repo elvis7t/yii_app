@@ -97,7 +97,16 @@ class ProjectController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            Yii::$app->session->setFlash('success', 'Project has been created successfully');
+            if (!empty($model->start_date)) {
+                $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
+            }
+            if (!empty($model->end_date)) {
+           
+                $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
+            }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
