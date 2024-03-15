@@ -3,11 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Project;
-use backend\models\ProjectSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
+use backend\models\Project;
 use yii\filters\VerbFilter;
+use backend\models\ProjectSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -65,20 +66,27 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $model = new Project();
-       
-        if ($model->load(Yii::$app->request->post())) {    
-            
-            if (!empty($model->start_date)) {
-                $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
-            }
-            if (!empty($model->end_date)) {
+        if ($this->request->isPost) {
            
-                $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
+            if ($model->load(Yii::$app->request->post())) {               
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');               
+                if (!empty($model->start_date)) {
+                    $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
+                }
+
+                if (!empty($model->end_date)) {
+                    $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
+                }
+
+                if ($model->save()) {
+                    $model->saveImage();
+                    Yii::$app->session->setFlash('success', 'Sucessuly saved');
+                    //  return $this->redirect(['index']);
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
-            
-            if ($model->save()) {
-                return $this->redirect(['index']);
-            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -103,7 +111,7 @@ class ProjectController extends Controller
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
             }
             if (!empty($model->end_date)) {
-           
+
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
             $model->save();

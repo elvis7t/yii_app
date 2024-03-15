@@ -12,5 +12,9 @@ return [
                 'js' => ['toastr/toastr.min.js']
             ],
         ]
+    ],
+    'uploads' => [
+        'projects' => 'uploads/projects'
     ]
+
 ];

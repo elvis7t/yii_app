@@ -1,9 +1,8 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "testimonial".
@@ -16,7 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $review
  * @property int $rating
  */
-class Testimonial extends ActiveRecord
+class Testimonial extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
