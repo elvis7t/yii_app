@@ -67,9 +67,9 @@ class ProjectController extends Controller
     {
         $model = new Project();
         if ($this->request->isPost) {
-           
-            if ($model->load(Yii::$app->request->post())) {               
-                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');               
+
+            if ($model->load(Yii::$app->request->post())) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                 if (!empty($model->start_date)) {
                     $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
                 }
@@ -104,9 +104,10 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($model->load(Yii::$app->request->post())) {
-            Yii::$app->session->setFlash('success', 'Project has been created successfully');
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            
             if (!empty($model->start_date)) {
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
             }
@@ -114,8 +115,10 @@ class ProjectController extends Controller
 
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->save()) {
+                $model->saveImage();                
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

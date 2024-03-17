@@ -86,3 +86,9 @@ a.desc:after {
 .form-group {
     margin-bottom: 1rem;
 }
+
+.project-view__image {
+    display: block;
+    margin-bottom: 16px;
+
+}

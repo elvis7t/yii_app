@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Projects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'] = [['label' => $this->title]];
 \yii\web\YiiAsset::register($this);
 ?>
 
@@ -46,6 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $imageHtml .= Html::img($image->file->absoluteUrl(), [
                                             'alt' => 'Demostration',
                                             'height' => 200,
+                                            'width' => 200,
+                                            'class' => 'm-3 d-block '
                                         ]);
                                     }
 

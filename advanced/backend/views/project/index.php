@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Projects');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 <div class="container-fluid">
     <div class="row">

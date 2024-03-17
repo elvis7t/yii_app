@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\jui\DatePicker;
 use yii\bootstrap4\ActiveForm;
+
 ?>
 
 <div class="project-form">
@@ -14,15 +15,6 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'tech_stach')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-    <?php foreach ($model->images as $image) : ?>
-        <?= Html::img($image->file->absoluteUrl(), [
-            'alt' => 'yttt',
-            'height' => 200
-
-        ]) ?>
-    <?php endforeach ?>
-
-    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'start_date')->widget(DatePicker::class, [
         'language' => 'pt-BR',
@@ -34,6 +26,18 @@ use yii\bootstrap4\ActiveForm;
         'dateFormat' => 'dd-MM-yyyy',
         'options' => ['readonly' => true]
     ]) ?>
+
+    <?php foreach ($model->images as $image) : ?>
+        <?= Html::img($image->file->absoluteUrl(), [
+            'alt' => 'yttt',
+            'height' => 200, 
+            'width' => 300,
+            'class' => 'm-3 d-block '
+
+        ]) ?>
+    <?php endforeach; ?>
+
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

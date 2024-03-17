@@ -98,6 +98,7 @@ class Project extends \yii\db\ActiveRecord
                 throw new Exception("Error Processing Request", $projectImage->errors());
             }
             if (!$this->imageFile->saveAs(Yii::$app->params['uploads']['projects'] . '/' . $file->name)) {
+                throw new Exception("Error Processing Request", $file->errors());
                 $db->transaction->rollBack();
             }
         });
