@@ -2,12 +2,7 @@
 
 use yii\helpers\Html;
 use yii\jui\DatePicker;
-use kartik\editors\Summernote;
 use yii\bootstrap4\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Project */
-/* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
 <div class="project-form">
