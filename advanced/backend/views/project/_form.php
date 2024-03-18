@@ -27,14 +27,21 @@ use yii\bootstrap4\ActiveForm;
         'options' => ['readonly' => true]
     ]) ?>
 
-    <?php foreach ($model->images as $image) : ?>
-        <?= Html::img($image->file->absoluteUrl(), [
-            'alt' => 'yttt',
-            'height' => 200, 
-            'width' => 300,
-            'class' => 'm-3 d-block '
+    <?php foreach ($model->images as $image): ?>
+        <div id="projec__form-contaiver-"<?=$image->id?>>
+            <?= Html::img($image->file->absoluteUrl(), [
+                'alt' => 'yttt',
+                'height' => 200,
+                'width' => 300,
+                'class' => 'm-3 d-block '
+            ]) ?>
 
-        ]) ?>
+        <?= Html::button(Yii::t('app', 'Delete'), [
+            'class' => 'tbn btn-denger btn-delete-project',
+            'data-project-image-id' => $image->id
+        ]) ?>;
+            <div id="project-form__image-error-message-<?= $image->id ?>" class='text-danger'></div>
+        </div>
     <?php endforeach; ?>
 
     <?= $form->field($model, 'imageFile')->fileInput() ?>

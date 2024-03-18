@@ -11,6 +11,7 @@ return [
     'project/create'=> 'project/create',
     'project/update/<id:\d+>' => 'project/update',
     'project/delete/<id:\d+>' => 'project/delete',
+    'project/delete/image/<id:\d+>' => 'project/delete-progect-image',
     'project/view/<id:\d+>' => 'project/view',
     // 'project'=> 'project/create'
 

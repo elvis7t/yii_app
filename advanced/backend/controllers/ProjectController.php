@@ -25,6 +25,7 @@ class ProjectController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                    'delete-project-image' => ['POST'],
                 ],
             ],
         ];
@@ -70,11 +71,11 @@ class ProjectController extends Controller
 
             if ($model->load(Yii::$app->request->post())) {
                 $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-                if (!empty($model->start_date)) {
+                if (!empty ($model->start_date)) {
                     $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
                 }
 
-                if (!empty($model->end_date)) {
+                if (!empty ($model->end_date)) {
                     $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
                 }
 
@@ -104,19 +105,19 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            
-            if (!empty($model->start_date)) {
+
+            if (!empty ($model->start_date)) {
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
             }
-            if (!empty($model->end_date)) {
+            if (!empty ($model->end_date)) {
 
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
             if ($model->save()) {
-                $model->saveImage();                
+                $model->saveImage();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -154,5 +155,17 @@ class ProjectController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionDeleteProjectImage()
+    {
+        $image = Project::findOne($this->request->post('id'));
+        if (!$image) {
+            throw new NotFoundHttpException();            
+        }
+        if($image->file->delete()){
+            $path = Yii::app->params['upload']['projects'] .'/'. $image->file->name;
+            unlink($path);
+        }
     }
 }
