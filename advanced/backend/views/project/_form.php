@@ -2,7 +2,10 @@
 
 use yii\helpers\Html;
 use yii\jui\DatePicker;
+use yii\web\JqueryAsset;
 use yii\bootstrap4\ActiveForm;
+
+$this->registerJsFile('@web/js/projectForm.js', ['depends' => [JqueryAsset::class]]);
 
 ?>
 
@@ -27,8 +30,8 @@ use yii\bootstrap4\ActiveForm;
         'options' => ['readonly' => true]
     ]) ?>
 
-    <?php foreach ($model->images as $image): ?>
-        <div id="projec__form-contaiver-"<?=$image->id?>>
+    <?php foreach ($model->images as $image) : ?>
+        <div id="projec__form-container-<?= $image->id ?>">
             <?= Html::img($image->file->absoluteUrl(), [
                 'alt' => 'yttt',
                 'height' => 200,
@@ -36,10 +39,10 @@ use yii\bootstrap4\ActiveForm;
                 'class' => 'm-3 d-block '
             ]) ?>
 
-        <?= Html::button(Yii::t('app', 'Delete'), [
-            'class' => 'tbn btn-denger btn-delete-project',
-            'data-project-image-id' => $image->id
-        ]) ?>;
+            <?= Html::button(Yii::t('app', 'Delete'), [
+                'class' => 'btn btn-danger btn-delete-project',
+                'data-project-image-id' => $image->id
+            ]) ?>
             <div id="project-form__image-error-message-<?= $image->id ?>" class='text-danger'></div>
         </div>
     <?php endforeach; ?>
