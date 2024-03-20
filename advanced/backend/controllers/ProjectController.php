@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use backend\models\Project;
 use yii\filters\VerbFilter;
+use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
 
@@ -159,13 +160,11 @@ class ProjectController extends Controller
 
     public function actionDeleteProjectImage()
     {
-        $image = Project::findOne($this->request->post('id'));
+        $image = ProjectImage::findOne($this->request->post('id'));
         if (!$image) {
             throw new NotFoundHttpException();            
         }
-        if($image->file->delete()){
-            $path = Yii::app->params['upload']['projects'] .'/'. $image->file->name;
-            unlink($path);
-        }
+        
+        $image->file->delete();
     }
 }

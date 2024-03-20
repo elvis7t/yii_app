@@ -86,6 +86,7 @@ class Project extends \yii\db\ActiveRecord
             $file = new File();
             $file->name = uniqid(true) . '.' . $this->imageFile->extension;
             $file->mime_type = mime_content_type($this->imageFile->tempName);
+            $file->path_url = Yii::$app->params['uploads']['projects'];
             $file->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['projects']);
             if (!$file->save()) {
                 throw new Exception("Error Processing Request", $file->errors());

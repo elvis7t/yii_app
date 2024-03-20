@@ -31,7 +31,7 @@ $this->registerJsFile('@web/js/projectForm.js', ['depends' => [JqueryAsset::clas
     ]) ?>
 
     <?php foreach ($model->images as $image) : ?>
-        <div id="projec__form-container-<?= $image->id ?>">
+        <div id="project-form__image-container-<?= $image->id ?>" class="project-form__image-container">
             <?= Html::img($image->file->absoluteUrl(), [
                 'alt' => 'yttt',
                 'height' => 200,
