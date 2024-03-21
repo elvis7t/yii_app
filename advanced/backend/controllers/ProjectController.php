@@ -72,7 +72,7 @@ class ProjectController extends Controller
         if ($this->request->isPost) {
 
             if ($model->load(Yii::$app->request->post())) {
-                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                $model->loadUploadImageFiles();
                 if (!empty($model->start_date)) {
                     $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
                 }
@@ -82,7 +82,7 @@ class ProjectController extends Controller
                 }
 
                 if ($model->save()) {
-                    $model->saveImage();
+                    $model->saveImages();
                     Yii::$app->session->setFlash('success', 'Sucessuly saved');
                     //  return $this->redirect(['index']);
                     return $this->redirect(['view', 'id' => $model->id]);
@@ -109,7 +109,7 @@ class ProjectController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            $model->loadUploadImageFiles();
 
             if (!empty($model->start_date)) {
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
@@ -119,7 +119,7 @@ class ProjectController extends Controller
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
             if ($model->save()) {
-                $model->saveImage();
+                $model->saveImages();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }

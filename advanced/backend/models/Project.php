@@ -4,9 +4,11 @@ namespace backend\models;
 
 use Yii;
 use yii\db\Exception;
+use yii\imagine\Image;
+use yii\web\UploadedFile;
+
 use backend\models\Testimonial;
 use backend\models\ProjectImage;
-
 use backend\models\ProjectQuery;
 use function PHPUnit\Framework\throwException;
 
@@ -24,7 +26,7 @@ use function PHPUnit\Framework\throwException;
  */
 class Project extends \yii\db\ActiveRecord
 {
-    public $imageFile;
+    public $imageFiles;
     /**
      * {@inheritdoc}
      */
@@ -42,7 +44,7 @@ class Project extends \yii\db\ActiveRecord
             [['name', 'tech_stach', 'description', 'start_date', 'end_date'], 'required'],
             [['tech_stach', 'description'], 'string'],
             [['name'], 'string', 'max' => 255],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg']
+            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10]
         ];
     }
 
@@ -80,27 +82,38 @@ class Project extends \yii\db\ActiveRecord
         return new ProjectQuery(get_called_class());
     }
 
-    public function saveImage()
+    public function saveImages()
     {
         Yii::$app->db->transaction(function ($db) {
-            $file = new File();
-            $file->name = uniqid(true) . '.' . $this->imageFile->extension;
-            $file->mime_type = mime_content_type($this->imageFile->tempName);
-            $file->path_url = Yii::$app->params['uploads']['projects'];
-            $file->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['projects']);
-            if (!$file->save()) {
-                throw new Exception("Error Processing Request", $file->errors());
-            }
+            /**
+             * @var $db yii\db\Connection
+             */
 
-            $projectImage = new ProjectImage();
-            $projectImage->project_id = $this->id;
-            $projectImage->file_id = $file->id;
-            if (!$projectImage->save()) {
-                throw new Exception("Error Processing Request", $projectImage->errors());
-            }
-            if (!$this->imageFile->saveAs(Yii::$app->params['uploads']['projects'] . '/' . $file->name)) {
-                throw new Exception("Error Processing Request", $file->errors());
-                $db->transaction->rollBack();
+            foreach ($this->imageFiles as $imageFile) {
+                /**
+                 * @var $imageFile UploadedFile
+                 */
+
+                $file = new File();
+                $file->name = uniqid(true) . '.' . $imageFile->extension;
+                $file->path_url = Yii::$app->params['uploads']['projects'];
+                $file->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['projects']);
+                $file->mime_type = mime_content_type($imageFile->tempName);
+                if (!$file->save()) {
+                    throw new Exception("Error Processing Request", $file->errors());
+                }
+
+                $projectImage = new ProjectImage();
+                $projectImage->project_id = $this->id;
+                $projectImage->file_id = $file->id;
+                $projectImage->save();
+
+                $thumbnail = Image::thumbnail($imageFile->tempName, null, 1000);
+                $didSave = $thumbnail->save($file->path_url . '/' . $file->name);
+                if (!$didSave) {
+                    throw new Exception("Error Processing Request", $file->errors());
+                    $db->transaction->rollBack();
+                }
             }
         });
     }
@@ -129,5 +142,10 @@ class Project extends \yii\db\ActiveRecord
         }
 
         return $configs;
+    }
+
+    public function loadUploadImageFiles()
+    {
+        $this->imageFiles = UploadedFile::getInstances($this, 'imageFiles');
     }
 }

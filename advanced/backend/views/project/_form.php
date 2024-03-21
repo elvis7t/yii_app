@@ -32,8 +32,8 @@ $this->registerJsFile('@web/js/projectForm.js', ['depends' => [JqueryAsset::clas
         'options' => ['readonly' => true]
     ]) ?>
 
-    <?= $form->field($model, 'imageFile')->widget(FileInput::class, [
-        'options' => ['accept' => 'image/*'],
+    <?= $form->field($model, 'imageFiles')->widget(FileInput::class, [
+        'options' => ['accept' => 'image/*', 'multiple' => true],
         'pluginOptions' => [
             'initialPreview' => $model->imageAbsoluteUrls(),
             'initialPreviewAsData' => true,
