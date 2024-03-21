@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use backend\models\Project;
@@ -72,11 +73,11 @@ class ProjectController extends Controller
 
             if ($model->load(Yii::$app->request->post())) {
                 $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-                if (!empty ($model->start_date)) {
+                if (!empty($model->start_date)) {
                     $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
                 }
 
-                if (!empty ($model->end_date)) {
+                if (!empty($model->end_date)) {
                     $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
                 }
 
@@ -110,10 +111,10 @@ class ProjectController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 
-            if (!empty ($model->start_date)) {
+            if (!empty($model->start_date)) {
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
             }
-            if (!empty ($model->end_date)) {
+            if (!empty($model->end_date)) {
 
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
@@ -160,11 +161,15 @@ class ProjectController extends Controller
 
     public function actionDeleteProjectImage()
     {
-        $image = ProjectImage::findOne($this->request->post('id'));
+        $image = ProjectImage::findOne($this->request->post('key'));
         if (!$image) {
-            throw new NotFoundHttpException();            
+            throw new NotFoundHttpException();
+        }
+
+        if ($image->file->delete()) {
+            return Json::encode(null);
         }
         
-        $image->file->delete();
+        return Json::encode(['error' => true]);
     }
 }

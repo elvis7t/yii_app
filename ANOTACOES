@@ -34,3 +34,6 @@ https://www.yiiframework.com/extension/yiisoft/yii2-jui/doc/api/2.0
 https://demos.krajee.com/
 https://demos.krajee.com/editors#sn-demo
 >_ composer require kartik-v/yii2-editors "dev-master"
+>_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+https://plugins.krajee.com/file-input#translations
+https://plugins.krajee.com/file-input/plugin-options#deleteUrl
