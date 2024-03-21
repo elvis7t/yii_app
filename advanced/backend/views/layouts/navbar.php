@@ -17,6 +17,9 @@ use yii\helpers\Html;
         <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= Url::to(['project/index']) ?>" class="nav-link">Project</a>
         </li>        
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= Url::to(['testimonial/index']) ?>" class="nav-link">Testimonial</a>
+        </li>        
     </ul>
 
     <!-- Right navbar links -->

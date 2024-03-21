@@ -32,17 +32,26 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <?php
-            echo \hail812\adminlte\widgets\Menu::widget([
+            <?= \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
+                        'label' => 'Projects',
+                        'icon' => 'clipboard-list',
+                        // 'badge' => '<span class="right badge badge-info">2</span>',
                         'items' => [
                             // ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
                             ['label' => 'Project Page', 'url' => ['project/index'],'iconStyle' => 'far'],
                             ['label' => 'Project Create', 'url' => ['project/create'],'iconStyle' => 'far'],
+                        ]
+                    ],
+                    [
+                        'label' => 'Testimonials',
+                        'icon' => 'comment-dots',
+                        // 'badge' => '<span class="right badge badge-info">2</span>',
+                        'items' => [
+                            // ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Testimonial Page', 'url' => ['testimonial/index'],'iconStyle' => 'far'],
+                            ['label' => 'Testimonial Create', 'url' => ['testimonial/create'],'iconStyle' => 'far'],
                         ]
                     ],
                     // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],

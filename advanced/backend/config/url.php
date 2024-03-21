@@ -13,7 +13,12 @@ return [
     'project/delete/<id:\d+>' => 'project/delete',
     'project/delete-project-image' => 'project/delete-project-image',
     'project/view/<id:\d+>' => 'project/view',
-    // 'project'=> 'project/create'
-
-    // 'POST register' => 'site/register'
+    
+    'testimonial/index'=> 'testimonial/index',
+    'testimonial/create'=> 'testimonial/create',
+    'testimonial/update/<id:\d+>' => 'testimonial/update',
+    'testimonial/delete/<id:\d+>' => 'testimonial/delete',
+    'testimonial/delete-project-image' => 'testimonial/delete-project-image',
+    'testimonial/view/<id:\d+>' => 'testimonial/view',
+    
 ];
