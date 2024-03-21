@@ -73,7 +73,7 @@ use yii\helpers\Html;
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline"><?= Yii::$app->user->identity->username ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -81,8 +81,8 @@ use yii\helpers\Html;
                     <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
                     <p>
-                        Alexander Pierce - Web Developer
-                        <small>Member since Nov. 2012</small>
+                    <?= Yii::$app->user->identity->username ?>
+                        <small>Member since Mar. 2024</small>
                     </p>
                 </li>
                 <!-- Menu Body -->
@@ -102,8 +102,10 @@ use yii\helpers\Html;
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    <a href="#" class="btn btn-default btn-flat float-right">Sign out</a>
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>                    
+                    <a href="<?= Url::to('/site/logout') ?>" class="btn btn-default btn-flat float-right" data-method="post">Sign out</a>
+                    <a href="<?= Url::to('/site/logout') ?>" class="btn btn-default btn-flat float-right" data-method="post">Sign out</a>
+
                 </li>
             </ul>
         </li>

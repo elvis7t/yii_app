@@ -3,10 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use backend\models\Project;
 use yii\filters\VerbFilter;
+use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
 
@@ -25,6 +27,7 @@ class ProjectController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                    'delete-project-image' => ['POST'],
                 ],
             ],
         ];
@@ -69,7 +72,7 @@ class ProjectController extends Controller
         if ($this->request->isPost) {
 
             if ($model->load(Yii::$app->request->post())) {
-                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                $model->loadUploadImageFiles();
                 if (!empty($model->start_date)) {
                     $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
                 }
@@ -79,7 +82,7 @@ class ProjectController extends Controller
                 }
 
                 if ($model->save()) {
-                    $model->saveImage();
+                    $model->saveImages();
                     Yii::$app->session->setFlash('success', 'Sucessuly saved');
                     //  return $this->redirect(['index']);
                     return $this->redirect(['view', 'id' => $model->id]);
@@ -104,10 +107,10 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($model->load(Yii::$app->request->post())) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            
+            $model->loadUploadImageFiles();
+
             if (!empty($model->start_date)) {
                 $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
             }
@@ -116,7 +119,7 @@ class ProjectController extends Controller
                 $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
             }
             if ($model->save()) {
-                $model->saveImage();                
+                $model->saveImages();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -154,5 +157,19 @@ class ProjectController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionDeleteProjectImage()
+    {
+        $image = ProjectImage::findOne($this->request->post('key'));
+        if (!$image) {
+            throw new NotFoundHttpException();
+        }
+
+        if ($image->file->delete()) {
+            return Json::encode(null);
+        }
+        
+        return Json::encode(['error' => true]);
     }
 }

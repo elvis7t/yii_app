@@ -1,8 +1,13 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\jui\DatePicker;
+use yii\web\JqueryAsset;
+use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
+
+$this->registerJsFile('@web/js/projectForm.js', ['depends' => [JqueryAsset::class]]);
 
 ?>
 
@@ -27,17 +32,18 @@ use yii\bootstrap4\ActiveForm;
         'options' => ['readonly' => true]
     ]) ?>
 
-    <?php foreach ($model->images as $image) : ?>
-        <?= Html::img($image->file->absoluteUrl(), [
-            'alt' => 'yttt',
-            'height' => 200, 
-            'width' => 300,
-            'class' => 'm-3 d-block '
-
-        ]) ?>
-    <?php endforeach; ?>
-
-    <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <?= $form->field($model, 'imageFiles')->widget(FileInput::class, [
+        'options' => ['accept' => 'image/*', 'multiple' => true],
+        'pluginOptions' => [
+            'initialPreview' => $model->imageAbsoluteUrls(),
+            'initialPreviewAsData' => true,
+            'showUpload' => false,
+            'showRemove' => true,
+            'dropZoneEnabled' => true,
+            'deleteUrl' => Url::to('/project/delete-project-image'),
+            'initialPreviewConfig' => $model->imageConfigs(),
+        ]
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
