@@ -9,8 +9,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use backend\models\Testimonial;
 use yii\web\NotFoundHttpException;
-use backend\models\TestimonialQuery;
-use PHPUnit\Framework\Constraint\ArrayHasKey;
+use backend\models\TestimonialSearch;
 
 /**
  * TestimonialController implements the CRUD actions for Testimonial model.
@@ -38,9 +37,9 @@ class TestimonialController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TestimonialQuery();
+        $searchModel = new TestimonialSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -68,9 +67,15 @@ class TestimonialController extends Controller
     public function actionCreate()
     {
         $model = new Testimonial();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->post()) {
+            if ($model->load(Yii::$app->request->post())) {
+                $model->loadUploadedImageFile();
+                if ($model->saveImage() && $model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -90,8 +95,11 @@ class TestimonialController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->post() && $model->load(Yii::$app->request->post())) {
+            $model->loadDefaultValues();
+            if ($model->saveImage() && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

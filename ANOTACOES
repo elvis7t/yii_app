@@ -14,6 +14,8 @@ php yii migrate/create create_project_table --fields="name:string:notNull,tech_s
 Para gerar varias paginas de na view separe por virgulas ou espaços
 ex: index, i-am-starting-a-blog, how-to-use-gii
 
+# uniqid(true) Gera um ID único, porem não garante a repetição do valor, o parâmetro more_entropy como true aumentar as chances de não repetição.
+
 # test
 >_ codecept build
 >_ codecept generate:suite acceptance  -c backend
