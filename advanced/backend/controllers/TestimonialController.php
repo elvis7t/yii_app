@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
+use backend\models\File;
 use backend\models\Project;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -39,7 +41,7 @@ class TestimonialController extends Controller
     {
         $searchModel = new TestimonialSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-    
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -70,6 +72,7 @@ class TestimonialController extends Controller
         if (Yii::$app->request->post()) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->loadUploadedImageFile();
+
                 if ($model->saveImage() && $model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
@@ -120,6 +123,19 @@ class TestimonialController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteCustumerImage()
+    {
+       
+        $file = File::findOne(Yii::$app->request->post('key'));
+        echo "<pre>";
+        var_dump($file);
+        exit();
+        if ($file->delete()) {
+            return json::encode(null);
+        }
+         return Json::encode(['error' => true]);
     }
 
     /**

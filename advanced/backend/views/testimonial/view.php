@@ -32,6 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attributes' => [
                             'id',
                             'project_id',
+                            [
+                                'attribute' => 'custumer_image_id',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    if (!$model->custumerImage) {
+                                        return null;
+                                    }
+                                    return Html::img($model->custumerImage->absoluteUrl(), [
+                                        'alt' => $model->custumer_name,
+                                        'height' => 200,
+                                        'width' => 200,
+                                    ]);
+                                }
+                            ],
                             'custumer_image_id',
                             'title',
                             'custumer_name',

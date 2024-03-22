@@ -4,7 +4,9 @@ namespace backend\models;
 
 use Yii;
 use yii\imagine\Image;
+use backend\models\File;
 use yii\web\UploadedFile;
+use backend\models\Project;
 
 /**
  * This is the model class for table "testimonial".
@@ -39,7 +41,8 @@ class Testimonial extends \yii\db\ActiveRecord
             [['project_id', 'custumer_image_id', 'rating'], 'integer'],
             [['review'], 'string'],
             [['title', 'custumer_name'], 'string', 'max' => 255],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id']],
+            [['custumer_image_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::class, 'targetAttribute' => ['custumer_image_id' => 'id']],
+            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
@@ -68,7 +71,7 @@ class Testimonial extends \yii\db\ActiveRecord
      */
     public function getCustumerImage()
     {
-        return $this->hasOne(File::class, ['id' => 'custumer_Image_id']);
+        return $this->hasOne(File::class, ['id' => 'custumer_image_id']);
     }
 
     /**
@@ -92,14 +95,16 @@ class Testimonial extends \yii\db\ActiveRecord
         try {
             $file = new File();
             $file->name = uniqid(true) . '.' . $this->imageFile->extension;
-            $file->path_url = Yii::$app->params['uploads']['testmonials'];
+            $file->path_url = Yii::$app->params['uploads']['testimonials'];
+            $file->base_url = Yii::$app->urlManager->createAbsoluteUrl($file->path_url);
             $file->mime_type = mime_content_type($this->imageFile->tempName);
             $file->save();
+            
             $this->custumer_image_id = $file->id;
 
-            $thumbnail = Image::thumbnail($this->imageFile->tempName, null, 1880);
-            $didSave = $thumbnail->save($file->base_url . '/' . $file->name);
-            if (!$didSave) {
+            $thumbnail = Image::thumbnail($this->imageFile->tempName, null, 1080);
+            $didSave = $thumbnail->save($file->path_url . '/' . $file->name);
+            if (!$didSave) {            
                 $this->addError('imageFile', Yii::t('app', 'File to save failed'));
                 return false;
             }
@@ -108,11 +113,11 @@ class Testimonial extends \yii\db\ActiveRecord
             return true;
         } catch (\Exception $e) {
             $transaction->rollBack();
-            $this->addError('imageFile', Yii::t('app', 'File to save failed') . '(' . $e->getMessage() . ')');
+            $this->addError('imageFile', Yii::t('app', 'File to save 2 failed') . '(' . $e->getMessage() . ')');
             return false;
         } catch (\Throwable $e) {
             $transaction->rollBack();
-            $this->addError('imageFile', Yii::t('app', 'File to save failed') . '(' . $e->getMessage() . ')');
+            $this->addError('imageFile', Yii::t('app', 'File to save 3 failed') . '(' . $e->getMessage() . ')');
             return false;
         }
 
@@ -127,6 +132,6 @@ class Testimonial extends \yii\db\ActiveRecord
     
     public function imageConfig()
     {
-        return $this->custumerImage ? [['key'=> $this->custumerImage->id]]: [];
+        return['key'=> $this->custumerImage->id ?? 1];
     }
 }
