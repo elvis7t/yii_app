@@ -131,7 +131,27 @@ class Testimonial extends \yii\db\ActiveRecord
     }
 
     public function imageConfig()
-    {        
-        return $this->custumerImage ? [['key' => $this->custumerImage->id]]: [];
+    {
+        return $this->custumerImage ? [['key' => $this->custumerImage->id]] : [];
+    }
+
+    public function delete()
+    {
+        $db = Yii::$app->db;
+        $transaction = $db->beginTransaction();
+        try {
+            parent::deleteInternal();
+            $this->custumerImage->deleteInternal();
+            $transaction->commit();
+            return true;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Failed to delete'));
+            return false;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Failed to delete'));
+            return false;
+        }
     }
 }

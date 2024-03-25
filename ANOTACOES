@@ -21,6 +21,7 @@ ex: index, i-am-starting-a-blog, how-to-use-gii
 >_ codecept generate:suite acceptance  -c backend
 >_ composer require codeception/module-webdriver --dev
 >_ codecept run -c backend --steps --xml --html 
+>_ cd/backend/codecept generate:test unit AppHelper 
 
 # AdminLte Template
 >_ composer require "hail812/yii2-adminlte3=~1.1"
