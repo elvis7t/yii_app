@@ -9,6 +9,7 @@ use yii\bootstrap4\ActiveForm;
 /** @var $model backend\models\Testimonial */
 /** @var $form yii\bootstrap4\ActiveForm */
 /** @var array $projects */
+
 ?>
 
 <div class="testimonial-form">
@@ -22,9 +23,11 @@ use yii\bootstrap4\ActiveForm;
         'pluginOptions' => [
             'initialPreview' => $model->imageAbsoluteUrls(),
             'initialPreviewAsData' => true,
-            'initiPreviewConfig' => $model->imageConfig(),
             'showUpload' => false,
-            'deleteUrl' => Url::to(['/testimonial/delete-custumer-image'])
+            'showRemove' => true,
+            'dropZoneEnabled' => true,
+            'deleteUrl' => Url::to(['/testimonial/delete-custumer-image']),
+            'initialPreviewConfig' => $model->imageConfig(),
         ]
     ]) ?>
 

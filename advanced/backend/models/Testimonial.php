@@ -99,12 +99,12 @@ class Testimonial extends \yii\db\ActiveRecord
             $file->base_url = Yii::$app->urlManager->createAbsoluteUrl($file->path_url);
             $file->mime_type = mime_content_type($this->imageFile->tempName);
             $file->save();
-            
+
             $this->custumer_image_id = $file->id;
 
             $thumbnail = Image::thumbnail($this->imageFile->tempName, null, 1080);
             $didSave = $thumbnail->save($file->path_url . '/' . $file->name);
-            if (!$didSave) {            
+            if (!$didSave) {
                 $this->addError('imageFile', Yii::t('app', 'File to save failed'));
                 return false;
             }
@@ -127,11 +127,11 @@ class Testimonial extends \yii\db\ActiveRecord
 
     public function imageAbsoluteUrls()
     {
-        return $this->custumerImage ? $this->custumerImage->absoluteUrl(): [];
+        return $this->custumerImage ? $this->custumerImage->absoluteUrl() : [];
     }
-    
+
     public function imageConfig()
-    {
-        return['key'=> $this->custumerImage->id ?? 1];
+    {        
+        return $this->custumerImage ? [['key' => $this->custumerImage->id]]: [];
     }
 }

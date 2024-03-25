@@ -27,7 +27,7 @@ class TestimonialController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['POST'],                    
                 ],
             ],
         ];
@@ -99,7 +99,7 @@ class TestimonialController extends Controller
         $model = $this->findModel($id);
 
         if (Yii::$app->request->post() && $model->load(Yii::$app->request->post())) {
-            $model->loadDefaultValues();
+            $model->loadUploadedImageFile();
             if ($model->saveImage() && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -127,15 +127,13 @@ class TestimonialController extends Controller
 
     public function actionDeleteCustumerImage()
     {
-       
+
         $file = File::findOne(Yii::$app->request->post('key'));
-        echo "<pre>";
-        var_dump($file);
-        exit();
+
         if ($file->delete()) {
             return json::encode(null);
         }
-         return Json::encode(['error' => true]);
+        return Json::encode(['error' => true]);
     }
 
     /**

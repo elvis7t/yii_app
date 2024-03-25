@@ -22,9 +22,6 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                         </div>
                     </div>
 
-
-                    <!--<?= $this->render('_search', ['model' => $searchModel]); ?>
-
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
