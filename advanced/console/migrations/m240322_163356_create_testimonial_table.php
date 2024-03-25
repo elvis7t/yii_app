@@ -15,7 +15,7 @@ class m240322_163356_create_testimonial_table extends Migration
         $this->createTable('{{%testimonial}}', [
             'id' => $this->primaryKey(),
             'project_id' => $this->integer()->notNull(),
-            'custumer_image_id' => $this->integer()->notNull(),
+            'custumer_image_id' => $this->integer(),
             'title' => $this->string()->notNull(),
             'custumer_name' => $this->string()->notNUll(),
             'review' => $this->text()->notNull(),
@@ -49,7 +49,7 @@ class m240322_163356_create_testimonial_table extends Migration
             'custumer_image_id',
             '{{%file}}',
             'id',
-            'CASCADE'
+            'SET NULL'
         );
     }
 
