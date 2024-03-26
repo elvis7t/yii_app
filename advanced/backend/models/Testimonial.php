@@ -37,13 +37,14 @@ class Testimonial extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['project_id', 'custumer_image_id', 'title', 'custumer_name', 'review', 'rating'], 'required'],
+            [['project_id', 'title', 'custumer_name', 'review', 'rating'], 'required'],
             [['project_id', 'custumer_image_id', 'rating'], 'integer'],
             [['review'], 'string'],
             [['title', 'custumer_name'], 'string', 'max' => 255],
             [['custumer_image_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::class, 'targetAttribute' => ['custumer_image_id' => 'id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
+            ['rating', 'integer', 'min' => 1, 'max' => 5],
         ];
     }
 
@@ -54,8 +55,8 @@ class Testimonial extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'project_id' => Yii::t('app', 'Project ID'),
-            'custumer_image_id' => Yii::t('app', 'Custumer Image ID'),
+            'project_id' => Yii::t('app', 'Project'),
+            'custumer_image_id' => Yii::t('app', 'Custumer Image'),
             'title' => Yii::t('app', 'Title'),
             'custumer_name' => Yii::t('app', 'Custumer Name'),
             'review' => Yii::t('app', 'Review'),
@@ -90,37 +91,39 @@ class Testimonial extends \yii\db\ActiveRecord
     }
     public function saveImage()
     {
-        $db = Yii::$app->db;
-        $transaction = $db->beginTransaction();
-        try {
-            $file = new File();
-            $file->name = uniqid(true) . '.' . $this->imageFile->extension;
-            $file->path_url = Yii::$app->params['uploads']['testimonials'];
-            $file->base_url = Yii::$app->urlManager->createAbsoluteUrl($file->path_url);
-            $file->mime_type = mime_content_type($this->imageFile->tempName);
-            $file->save();
 
-            $this->custumer_image_id = $file->id;
+        if ($this->imageFile) {
+            $db = Yii::$app->db;
+            $transaction = $db->beginTransaction();
+            try {
+                $file = new File();
+                $file->name = uniqid(true) . '.' . $this->imageFile->extension;
+                $file->path_url = Yii::$app->params['uploads']['testimonials'];
+                $file->base_url = Yii::$app->urlManager->createAbsoluteUrl($file->path_url);
+                $file->mime_type = mime_content_type($this->imageFile->tempName);
+                $file->save();
 
-            $thumbnail = Image::thumbnail($this->imageFile->tempName, null, 1080);
-            $didSave = $thumbnail->save($file->path_url . '/' . $file->name);
-            if (!$didSave) {
-                $this->addError('imageFile', Yii::t('app', 'File to save failed'));
+                $this->custumer_image_id = $file->id;
+
+                $thumbnail = Image::thumbnail($this->imageFile->tempName, null, 1080);
+                $didSave = $thumbnail->save($file->path_url . '/' . $file->name);
+                if (!$didSave) {
+                    $this->addError('imageFile', Yii::t('app', 'File to save failed'));
+                    return false;
+                }
+
+                $transaction->commit();
+                return true;
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                $this->addError('imageFile', Yii::t('app', 'File to save 2 failed') . '(' . $e->getMessage() . ')');
+                return false;
+            } catch (\Throwable $e) {
+                $transaction->rollBack();
+                $this->addError('imageFile', Yii::t('app', 'File to save 3 failed') . '(' . $e->getMessage() . ')');
                 return false;
             }
-
-            $transaction->commit();
-            return true;
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            $this->addError('imageFile', Yii::t('app', 'File to save 2 failed') . '(' . $e->getMessage() . ')');
-            return false;
-        } catch (\Throwable $e) {
-            $transaction->rollBack();
-            $this->addError('imageFile', Yii::t('app', 'File to save 3 failed') . '(' . $e->getMessage() . ')');
-            return false;
         }
-
         return true;
     }
 

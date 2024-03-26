@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\Project;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -27,6 +28,10 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             ],
                         ]) ?>
                     </p>
+
+                    <p>
+                        <?= Html::a(Yii::t('app', 'New Testimonial'), ['testimonial/create', 'project_id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                    </p>
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
@@ -42,7 +47,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                                     }
 
                                     $imageHtml = '';
-                                    foreach ($model->images as $image) {                                        
+                                    foreach ($model->images as $image) {
                                         $imageHtml .= Html::img($image->file->absoluteUrl(), [
                                             'alt' => 'Demostration',
                                             'height' => 200,
@@ -58,6 +63,19 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             'description:ntext',
                             'start_date',
                             'end_date',
+                            [
+                                'label' => Yii::t('app', 'Testimonials'),
+                                'format' => 'raw',
+                                'value' => function (Project $model) {
+                                    $html = "";
+                                    foreach ($model->testimonials as $testimonial) {
+                                        $label = $testimonial->title . ' | ' . $testimonial->custumer_name . ' | ' . $testimonial->rating;
+                                        $html .= '<div>' . Html::a($label, ['testimonial/view', 'id' => $testimonial->id] ). '</div>';
+                                    }
+                                    return $html;
+                                }
+
+                            ]
                         ],
                     ]) ?>
                 </div>

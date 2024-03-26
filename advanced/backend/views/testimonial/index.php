@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\TestimonialQuery */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var \common\models\Project[] $projects */
 
 $this->title = Yii::t('app', 'Testimonials');
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,15 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
-
                             'id',
-                            'project_id',
-                            'custumer_image_id',
+                            [
+                                'attribute' => 'project_id',
+                                'format' => 'raw',
+                                'filter' => $projects,
+                                'value' => function ($model) {                                    
+                                    return Html::a($model->project->name, ['/project/view', 'id' => $model->project_id]);
+                                }
+                            ],
+                            [
+                                'attribute' => 'custumer_image_id',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    if (!$model->custumerImage) {
+                                        return null;
+                                    }
+                                    return Html::img($model->custumerImage->absoluteUrl(), [
+                                        'alt' => $model->custumer_name,
+                                        'height' => 75,
+                                    ]);
+                                }
+                            ],
                             'title',
                             'custumer_name',
                             //'review:ntext',
-                            //'rating',
+                            'rating',
 
                             ['class' => 'hail812\adminlte3\yii\grid\ActionColumn'],
                         ],

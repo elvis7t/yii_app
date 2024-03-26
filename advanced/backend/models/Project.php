@@ -68,7 +68,7 @@ class Project extends \yii\db\ActiveRecord
         return $this->hasMany(ProjectImage::class, ['project_id' => 'id']);
     }
 
-    public function getTestmonials()
+    public function getTestimonials()
     {
         return $this->hasMany(Testimonial::class, ['project_id' => 'id']);
     }

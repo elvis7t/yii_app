@@ -45,6 +45,7 @@ class TestimonialController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'projects' => $this->loadProjects(),
         ]);
     }
 
@@ -78,6 +79,7 @@ class TestimonialController extends Controller
                 }
             }
         } else {
+            $model->project_id = Yii::$app->request->get('project_id');
             $model->loadDefaultValues();
         }
 

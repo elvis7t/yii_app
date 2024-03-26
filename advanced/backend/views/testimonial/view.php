@@ -30,8 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id',
-                            'project_id',
+                            'id',                            
+                            [
+                                'attribute' => 'project_id',
+                                'format' => 'raw',
+                                'value' => function ($model) {                                    
+                                    return Html::a($model->project->name, ['/project/view', 'id' => $model->project_id]);
+                                }
+                            ],
                             [
                                 'attribute' => 'custumer_image_id',
                                 'format' => 'raw',
@@ -45,8 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'width' => 200,
                                     ]);
                                 }
-                            ],
-                            'custumer_image_id',
+                            ],                            
                             'title',
                             'custumer_name',
                             'review:ntext',

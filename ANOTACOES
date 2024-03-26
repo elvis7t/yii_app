@@ -35,11 +35,17 @@ https://www.yiiframework.com/extension/yiisoft/yii2-jui/doc/api/2.0
 
 #Widget demos.krajee
 https://demos.krajee.com/
+* Editor
 https://demos.krajee.com/editors#sn-demo
 >_ composer require kartik-v/yii2-editors "dev-master"
->_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+* Fileinput
 https://plugins.krajee.com/file-input#translations
 https://plugins.krajee.com/file-input/plugin-options#deleteUrl
+>_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+*Star-rating
+https://demos.krajee.com/widget-details/star-rating
+>_ composer require kartik-v/yii2-widget-rating "dev-master"
+
 
 #yii2-imagine
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine
