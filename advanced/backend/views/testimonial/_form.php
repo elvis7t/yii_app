@@ -24,6 +24,7 @@ use yii\bootstrap4\ActiveForm;
         'pluginOptions' => [
             'initialPreview' => $model->imageAbsoluteUrls(),
             'initialPreviewAsData' => true,
+            'showCaption' => true,
             'showUpload' => false,
             'showRemove' => true,
             'dropZoneEnabled' => true,
@@ -38,7 +39,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'review')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'rating')->widget(StarRating::classname(), [
+    <?= $form->field($model, 'rating')->widget(StarRating::class, [
         'pluginOptions' => ['step' => 1]
     ]); ?>
 

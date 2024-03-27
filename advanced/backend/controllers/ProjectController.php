@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
+use backend\models\TestimonialSearch;
+use yii\helpers\ArrayHelper;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -47,6 +49,18 @@ class ProjectController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public function actionProject()
+    {
+        $searchModel = new ProjectSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('project', [
+            'model' => Project::find()->all(),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Displays a single Project model.
@@ -56,8 +70,14 @@ class ProjectController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new TestimonialSearch();
+        $searchModel->project_id = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,    
+            'projects' => ArrayHelper::map(Project::find()->all(), 'id', 'name'),
         ]);
     }
 
@@ -169,7 +189,7 @@ class ProjectController extends Controller
         if ($image->file->delete()) {
             return Json::encode(null);
         }
-        
+
         return Json::encode(['error' => true]);
     }
 }

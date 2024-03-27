@@ -63,21 +63,14 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             'description:ntext',
                             'start_date',
                             'end_date',
-                            [
-                                'label' => Yii::t('app', 'Testimonials'),
-                                'format' => 'raw',
-                                'value' => function (Project $model) {
-                                    $html = "";
-                                    foreach ($model->testimonials as $testimonial) {
-                                        $label = $testimonial->title . ' | ' . $testimonial->custumer_name . ' | ' . $testimonial->rating;
-                                        $html .= '<div>' . Html::a($label, ['testimonial/view', 'id' => $testimonial->id] ). '</div>';
-                                    }
-                                    return $html;
-                                }
-
-                            ]
                         ],
                     ]) ?>
+                    
+                    <h2><?= Yii::t('app', 'Testimonials')?></h2>
+
+                    <?php foreach($model->testimonials as $testimonial):?>
+                    <div><?= Html::a($testimonial->title, ['testimonial/view', 'id' => $testimonial->id])?></div>
+                    <?php endforeach;?>
                 </div>
                 <!--.col-md-12-->
             </div>

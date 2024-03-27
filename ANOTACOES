@@ -4,7 +4,7 @@ para que esta variável possa ser interpretada como conteúdo em vez
 de HTML, e assim é boa prática de segurança para evitar ataques 
 como ataques de script entre sites.
 
-# Html::a('Label name', Url::to(['controoler/action']))
+# Html::a('Label name', Url::to(['controller/action']))
 Cria a tag <a>
 
 # comando de criar migration declarativa

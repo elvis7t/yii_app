@@ -8,6 +8,7 @@ return [
     'logout' => 'site/logout',
     '' => 'site/index',
     'project/index'=> 'project/index',
+    'project/project'=> 'project/project',
     'project/create'=> 'project/create',
     'project/update/<id:\d+>' => 'project/update',
     'project/delete/<id:\d+>' => 'project/delete',
