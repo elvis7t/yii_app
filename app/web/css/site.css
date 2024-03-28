@@ -92,3 +92,28 @@ a.desc:after {
     margin-bottom: 16px;
 
 }
+
+.project {
+    max-width: 300px;
+    margin-bottom: 32px;
+    margin-right: 28px
+}
+
+.project__image {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project__link {
+    text-decoration: none;
+    color: #000;
+}
+
+.project-items{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+

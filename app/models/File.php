@@ -29,7 +29,7 @@ class File extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'mime_type'], 'required'],
-            [['name', 'base_url', 'mime_type'], 'string', 'max' => 255],
+            [['name', 'path_url','base_url', 'mime_type'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,7 +42,30 @@ class File extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'base_url' => Yii::t('app', 'Base Url'),
+            'path_url' => Yii::t('app', 'Path Url'),
             'mime_type' => Yii::t('app', 'Mime Type'),
         ];
+    }
+
+    public function getProjectImages()
+    {
+        return $this->hasMany(ProjectImage::class, ['file_id' => 'id']);
+    }
+
+    public function getTestimonial()
+    {
+        return $this->hasMany(Testimonial::class, ['custumer_image_id' => 'id']);
+    }
+
+
+    public function absoluteUrl()
+    {
+        return $this->base_url . '/' . $this->name;
+    }
+    
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        @unlink($this->path_url . '/' . $this->name);
     }
 }
