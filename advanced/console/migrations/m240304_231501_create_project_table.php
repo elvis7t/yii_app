@@ -17,8 +17,8 @@ class m240304_231501_create_project_table extends Migration
             'name' => $this->string()->notNull(),
             'tech_stach' => $this->text()->notNull(),
             'description' => $this->text()->notNull(),
-            'start_date' => $this->timestamp(),
-            'end_date' => $this->timestamp(0)->null(),
+            'start_date' => $this->date(),
+            'end_date' => $this->date(0)->null(),
         ]);
     }
 

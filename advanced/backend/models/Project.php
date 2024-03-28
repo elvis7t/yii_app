@@ -4,13 +4,12 @@ namespace backend\models;
 
 use Yii;
 use yii\db\Exception;
+use yii\helpers\Html;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
-
 use backend\models\Testimonial;
 use backend\models\ProjectImage;
 use backend\models\ProjectQuery;
-use function PHPUnit\Framework\throwException;
 
 /**
  * This is the model class for table "project".
@@ -169,5 +168,15 @@ class Project extends \yii\db\ActiveRecord
             Yii::$app->session->setFlash('danger', Yii::t('app', 'Failed to delete'));
             return false;
         }
+    }
+
+    public function corouselImages()
+    {
+        return array_map(function ($projectImage) {
+            return Html::img($projectImage->file->absoluteUrl(), [
+                'alt' => $this->name,
+                'class' => 'img-responsive'
+            ]);
+        }, $this->images);
     }
 }

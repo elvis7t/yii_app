@@ -29,9 +29,14 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             'id',
                             'name',
                             'tech_stach:ntext',                           
-                            'start_date',
-                            'end_date',
-
+                            'start_date' => [
+                                'attribute' => 'start_date',
+                                'format' => ['date', 'php:d/m/Y']
+                            ],
+                            'end_date' => [
+                                'attribute' => 'end_date',
+                                'format' => ['date', 'php:d/m/Y']
+                            ],
                             ['class' => 'hail812\adminlte3\yii\grid\ActionColumn'],
                         ],
                         'summaryOptions' => ['class' => 'summary mb-2'],

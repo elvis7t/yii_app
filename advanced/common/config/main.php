@@ -9,5 +9,11 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        'formatter' => [
+            'dateFormat' => 'dd-MM-yyyy ss:mm:HH',        
+        ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
     ],
 ];

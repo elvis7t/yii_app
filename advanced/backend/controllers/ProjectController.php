@@ -49,19 +49,20 @@ class ProjectController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    
-    public function actionProject()
+   
+    public function actionDetails($id)
     {
-        $searchModel = new ProjectSearch();
+        $searchModel = new TestimonialSearch();
+        $searchModel->project_id = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('project', [
-            'model' => Project::find()->all(),
+        return $this->render('details/index', [
+            'model' => $this->findModel($id),
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,    
+            'projects' => ArrayHelper::map(Project::find()->all(), 'id', 'name'),
         ]);
     }
-
+    
     /**
      * Displays a single Project model.
      * @param int $id ID

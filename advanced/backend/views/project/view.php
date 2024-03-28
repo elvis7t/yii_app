@@ -27,11 +27,10 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                                 'method' => 'post',
                             ],
                         ]) ?>
+                        <?= Html::a(Yii::t('app', 'New Testimonial'), ['testimonial/create', 'project_id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+                        <?= Html::a(Yii::t('app', 'Details'), ['project/details', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
                     </p>
 
-                    <p>
-                        <?= Html::a(Yii::t('app', 'New Testimonial'), ['testimonial/create', 'project_id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                    </p>
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
@@ -61,16 +60,22 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             ],
                             'tech_stach:raw',
                             'description:ntext',
-                            'start_date',
-                            'end_date',
+                            'start_date' => [
+                                'attribute' => 'start_date',
+                                'format' => ['date', 'php:d/m/Y']
+                            ],
+                            'end_date' => [
+                                'attribute' => 'end_date',
+                                'format' => ['date', 'php:d/m/Y']
+                            ],
                         ],
                     ]) ?>
-                    
-                    <h2><?= Yii::t('app', 'Testimonials')?></h2>
 
-                    <?php foreach($model->testimonials as $testimonial):?>
-                    <div><?= Html::a($testimonial->title, ['testimonial/view', 'id' => $testimonial->id])?></div>
-                    <?php endforeach;?>
+                    <h2><?= Yii::t('app', 'Testimonials') ?></h2>
+
+                    <?php foreach ($model->testimonials as $testimonial) : ?>
+                        <div><?= Html::a($testimonial->title, ['testimonial/view', 'id' => $testimonial->id]) ?></div>
+                    <?php endforeach; ?>
                 </div>
                 <!--.col-md-12-->
             </div>

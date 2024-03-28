@@ -7,13 +7,14 @@ return [
     'login' => 'site/login',
     'logout' => 'site/logout',
     '' => 'site/index',
-    'project/index'=> 'project/index',
-    'project/project'=> 'project/project',
+    'project/index'=> 'project/index',   
     'project/create'=> 'project/create',
     'project/update/<id:\d+>' => 'project/update',
     'project/delete/<id:\d+>' => 'project/delete',
     'project/delete-project-image' => 'project/delete-project-image',
     'project/view/<id:\d+>' => 'project/view',
+        
+    'project/details/<id:\d+>' => 'project/details',
     
     'testimonial/index'=> 'testimonial/index',
     'testimonial/create'=> 'testimonial/create',
