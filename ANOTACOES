@@ -35,20 +35,24 @@ https://www.yiiframework.com/extension/yiisoft/yii2-jui/doc/api/2.0
 
 #Widget demos.krajee
 https://demos.krajee.com/
+
 * Editor
 https://demos.krajee.com/editors#sn-demo
 >_ composer require kartik-v/yii2-editors "dev-master"
+
 * Fileinput
 https://plugins.krajee.com/file-input#translations
 https://plugins.krajee.com/file-input/plugin-options#deleteUrl
 >_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+
 *Star-rating
 https://demos.krajee.com/widget-details/star-rating
 >_ composer require kartik-v/yii2-widget-rating "dev-master"
-
 
 #yii2-imagine
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine/doc/api/2.3
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine/doc/api/2.3/yii-imagine-image
 >_ composer require --prefer-dist yiisoft/yii2-imagine
+
+php yii migrate/create create_post_table --fields="title:string:notNull,body:text:notNull,slug:text:notNull,is_published:boolean:notNull,create_at:date:notNull,update_at:date:notNull"

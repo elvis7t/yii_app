@@ -15,10 +15,13 @@ use yii\helpers\Html;
             <a href="<?= Url::home() ?>" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['project/index']) ?>" class="nav-link">Project</a>
+            <a href="<?= Url::to(['/project/index']) ?>" class="nav-link">Project</a>
         </li>        
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['testimonial/index']) ?>" class="nav-link">Testimonial</a>
+            <a href="<?= Url::to(['/testimonial/index']) ?>" class="nav-link">Testimonial</a>
+        </li>        
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= Url::to(['/blog/post/index']) ?>" class="nav-link">Blog</a>
         </li>        
     </ul>
 

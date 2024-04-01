@@ -9,6 +9,11 @@ $config = [
     'language' => 'pt_BR',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'blog' => [
+            'class' => 'app\module\blog\Module',
+        ],
+    ], 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

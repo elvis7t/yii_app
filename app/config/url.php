@@ -5,9 +5,9 @@ return [
     'contact' => 'site/contact',
     'login' => 'site/login',
     'privacy-policy' => 'site/privacy-policy',
-    'help' => 'help/index',
-    // 'logout' => 'site/logout',
+    'help' => 'help/index',   
     '' => 'site/index',
-
-    // 'POST register' => 'site/register'
+    'blog' => 'blog/default/index',
+    'blog/post' => 'blog/post/index',
+    
 ];
