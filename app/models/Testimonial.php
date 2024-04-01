@@ -54,4 +54,9 @@ class Testimonial extends ActiveRecord
             'rating' => Yii::t('app', 'Rating'),
         ];
     }
+    
+    public function getCustumerImage()
+    {
+        return $this->hasOne(File::class, ['id' => 'custumer_image_id']);
+    }
 }

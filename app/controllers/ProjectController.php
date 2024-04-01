@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Project;
 use yii\web\Controller;
+use app\models\Testimonial;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -23,7 +24,7 @@ class ProjectController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -56,8 +57,12 @@ class ProjectController extends Controller
      */
     public function actionView($id)
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Testimonial::find()->where(['project_id' => $id]),            
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
         ]);
     }
 

@@ -174,7 +174,7 @@ class Project extends \yii\db\ActiveRecord
         return array_map(function ($projectImage) {
             return Html::img($projectImage->file->absoluteUrl(), [
                 'alt' => $this->name,
-                'class' => 'img-responsive'
+                'style' => 'object-fit:cover; width:100%; max-height:500px;'
             ]);
         }, $this->images);
     }

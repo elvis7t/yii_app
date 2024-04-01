@@ -116,4 +116,23 @@ a.desc:after {
     flex-wrap: wrap;
 }
 
+.project-view__date, .project-view__tech_stack, .project-view__description{
+   margin-bottom: 16px;
+}
+
+.project-view__carousel_images{
+margin-bottom: 32px;
+}
+
+.project-view__testimonial {
+    margin-bottom: 32px;
+}
+.project-view__testimonial-image {
+   height: 50px;
+   width: 50px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+
 

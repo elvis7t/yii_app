@@ -8,7 +8,7 @@ use yii\helpers\Html;
     <?php
     $images = $model->imageAbsoluteUrls();
     if (count($images) > 0) {
-        echo Html::img($images[0], ['style' => 'width: 100%; border-radius: 10px;height: 200px; object-fit: cover;']);
+        echo Html::img($images[0], ['style' => 'width: 100%; border-radius: 10px;height: 200px; object-fit: cover; margin-top:15px;']);
     }
     ?>
     <div class="d-flex">

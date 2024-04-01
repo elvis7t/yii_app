@@ -8,11 +8,12 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use backend\models\Project;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use common\helpers\DateHelper;
 use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
 use backend\models\TestimonialSearch;
-use yii\helpers\ArrayHelper;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -49,7 +50,7 @@ class ProjectController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-   
+
     public function actionDetails($id)
     {
         $searchModel = new TestimonialSearch();
@@ -58,11 +59,11 @@ class ProjectController extends Controller
         return $this->render('details/index', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,    
+            'dataProvider' => $dataProvider,
             'projects' => ArrayHelper::map(Project::find()->all(), 'id', 'name'),
         ]);
     }
-    
+
     /**
      * Displays a single Project model.
      * @param int $id ID
@@ -77,7 +78,7 @@ class ProjectController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,    
+            'dataProvider' => $dataProvider,
             'projects' => ArrayHelper::map(Project::find()->all(), 'id', 'name'),
         ]);
     }
@@ -131,14 +132,9 @@ class ProjectController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->loadUploadImageFiles();
+            $model->start_date = DateHelper::usDate($model->start_date);
+            $model->end_date = DateHelper::usDate($model->end_date);
 
-            if (!empty($model->start_date)) {
-                $model->start_date = date('Y-m-d H:i:s', strtotime($model->start_date));
-            }
-            if (!empty($model->end_date)) {
-
-                $model->end_date = date('Y-m-d H:i:s', strtotime($model->end_date));
-            }
             if ($model->save()) {
                 $model->saveImages();
                 return $this->redirect(['view', 'id' => $model->id]);

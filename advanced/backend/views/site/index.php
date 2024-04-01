@@ -41,7 +41,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Project::find()->count(),
                 'text' => 'Projects',
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'linkUrl' => '/project/index',
             ]) ?>
         </div>        
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Testimonial::find()->count(),
                 'text' => 'Testimonials',
