@@ -4,13 +4,12 @@ namespace backend\models;
 
 use Yii;
 use yii\db\Exception;
+use yii\helpers\Html;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
-
 use backend\models\Testimonial;
 use backend\models\ProjectImage;
 use backend\models\ProjectQuery;
-use function PHPUnit\Framework\throwException;
 
 /**
  * This is the model class for table "project".
@@ -68,7 +67,7 @@ class Project extends \yii\db\ActiveRecord
         return $this->hasMany(ProjectImage::class, ['project_id' => 'id']);
     }
 
-    public function getTestmonials()
+    public function getTestimonials()
     {
         return $this->hasMany(Testimonial::class, ['project_id' => 'id']);
     }
@@ -147,5 +146,38 @@ class Project extends \yii\db\ActiveRecord
     public function loadUploadImageFiles()
     {
         $this->imageFiles = UploadedFile::getInstances($this, 'imageFiles');
+    }
+
+    public function delete()
+    {
+        $db = Yii::$app->db;
+        $transaction = $db->beginTransaction();
+        try {
+            foreach ($this->images as $image) {
+                $image->file->deleteInternal();
+            }
+            parent::deleteInternal();
+            $transaction->commit();
+            return true;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Failed to delete'));
+            return false;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Failed to delete'));
+            return false;
+        }
+    }
+
+    public function corouselImages()
+    {
+        return array_map(function ($projectImage) {
+            return Html::img($projectImage->file->absoluteUrl(), [
+                'alt' => $this->name,
+                'class' => 'img-fluid',
+                'style' => 'object-fit:cover; width:100%; max-height:500px;'
+            ]);
+        }, $this->images);
     }
 }

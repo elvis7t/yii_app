@@ -7,13 +7,20 @@ return [
     'login' => 'site/login',
     'logout' => 'site/logout',
     '' => 'site/index',
-    'project/index'=> 'project/index',
+    'project/index'=> 'project/index',   
     'project/create'=> 'project/create',
     'project/update/<id:\d+>' => 'project/update',
     'project/delete/<id:\d+>' => 'project/delete',
     'project/delete-project-image' => 'project/delete-project-image',
     'project/view/<id:\d+>' => 'project/view',
-    // 'project'=> 'project/create'
-
-    // 'POST register' => 'site/register'
+        
+    'project/details/<id:\d+>' => 'project/details',
+    
+    'testimonial/index'=> 'testimonial/index',
+    'testimonial/create'=> 'testimonial/create',
+    'testimonial/update/<id:\d+>' => 'testimonial/update',
+    'testimonial/delete/<id:\d+>' => 'testimonial/delete',
+    'testimonial/delete-custumer-image' => 'testimonial/delete-custumer-image',
+    'testimonial/view/<id:\d+>' => 'testimonial/view',
+    
 ];

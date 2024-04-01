@@ -26,6 +26,11 @@ $config = [
             ],
         ],
         'db' => $db,
+        [
+            'assetManger' => [
+                'appendTimestamp' => true
+            ]
+        ],
     ],
     'params' => $params,
     /*

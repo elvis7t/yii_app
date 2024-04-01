@@ -4,7 +4,7 @@ para que esta variável possa ser interpretada como conteúdo em vez
 de HTML, e assim é boa prática de segurança para evitar ataques 
 como ataques de script entre sites.
 
-# Html::a('Label name', Url::to(['controoler/action']))
+# Html::a('Label name', Url::to(['controller/action']))
 Cria a tag <a>
 
 # comando de criar migration declarativa
@@ -14,11 +14,14 @@ php yii migrate/create create_project_table --fields="name:string:notNull,tech_s
 Para gerar varias paginas de na view separe por virgulas ou espaços
 ex: index, i-am-starting-a-blog, how-to-use-gii
 
+# uniqid(true) Gera um ID único, porem não garante a repetição do valor, o parâmetro more_entropy como true aumentar as chances de não repetição.
+
 # test
 >_ codecept build
 >_ codecept generate:suite acceptance  -c backend
 >_ composer require codeception/module-webdriver --dev
 >_ codecept run -c backend --steps --xml --html 
+>_ cd/backend/codecept generate:test unit AppHelper 
 
 # AdminLte Template
 >_ composer require "hail812/yii2-adminlte3=~1.1"
@@ -32,11 +35,17 @@ https://www.yiiframework.com/extension/yiisoft/yii2-jui/doc/api/2.0
 
 #Widget demos.krajee
 https://demos.krajee.com/
+* Editor
 https://demos.krajee.com/editors#sn-demo
 >_ composer require kartik-v/yii2-editors "dev-master"
->_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+* Fileinput
 https://plugins.krajee.com/file-input#translations
 https://plugins.krajee.com/file-input/plugin-options#deleteUrl
+>_ composer require kartik-v/yii2-widget-fileinput "dev-master"
+*Star-rating
+https://demos.krajee.com/widget-details/star-rating
+>_ composer require kartik-v/yii2-widget-rating "dev-master"
+
 
 #yii2-imagine
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine
