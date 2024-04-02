@@ -10,6 +10,7 @@ use backend\models\Project;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use common\helpers\DateHelper;
+use yii\filters\AccessControl;
 use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
@@ -26,6 +27,15 @@ class ProjectController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [

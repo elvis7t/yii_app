@@ -11,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'modules' => [
         'blog' => [
-            'class' => 'app\module\blog\Module',
+            'class' => 'app\modules\blog\Module',
         ],
     ], 
     'aliases' => [

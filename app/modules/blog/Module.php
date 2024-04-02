@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\blog;
+namespace app\modules\blog;
 
 /**
  * blog module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'backend\modules\blog\controllers';
+    public $controllerNamespace = 'app\modules\blog\controllers';
 
     /**
      * {@inheritdoc}
@@ -21,9 +21,4 @@ class Module extends \yii\base\Module
 
         // custom initialization code goes here
     }
-    
-    public function behaviors()
-    {
-        return parent::behaviors();
-    } 
 }

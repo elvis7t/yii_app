@@ -9,6 +9,7 @@ use backend\models\File;
 use backend\models\Project;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 use backend\models\Testimonial;
 use yii\web\NotFoundHttpException;
 use backend\models\TestimonialSearch;
@@ -24,6 +25,15 @@ class TestimonialController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [

@@ -3,11 +3,12 @@
 namespace backend\modules\blog\controllers;
 
 use Yii;
-use backend\models\Post;
-use backend\modules\blog\models\PostSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use backend\models\Post;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
+use backend\modules\blog\models\PostSearch;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -20,6 +21,15 @@ class PostController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
