@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use fedemotta\datatables\DataTables;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProjectSearch */
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                         </div>
                     </div>
 
-                    <?= GridView::widget([
+                    <?= DataTables::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [

@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use backend\models\Post;
+use fedemotta\datatables\DataTables;
 use hail812\adminlte3\yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
@@ -25,10 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
-
-                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-                    <?= GridView::widget([
+                    <?= DataTables::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
@@ -44,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                  }
                             ],
                         ],
+                        
                     ]); ?>
 
 
