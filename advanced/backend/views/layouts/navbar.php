@@ -12,16 +12,16 @@ use yii\helpers\Html;
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::home() ?>" class="nav-link" visible="<?= Yii::$app->user->can('manageProjects') ?>">Home</a>
+            <a href="<?= Url::home() ?>" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['/project/index']) ?>" class="nav-link">Project</a>
+            <a href="<?= Url::to(['/project/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageProjects') ? '' : 'hidden'?>>Project</a>
         </li>        
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['/testimonial/index']) ?>" class="nav-link">Testimonial</a>
+            <a href="<?= Url::to(['/testimonial/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageTestimonials') ? '' : 'hidden'?>>Testimonial</a>
         </li>        
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['/blog/post/index']) ?>" class="nav-link">Blog</a>
+            <a href="<?= Url::to(['/blog/post/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageBlog') ? '' : 'hidden'?>>Blog</a>
         </li>        
     </ul>
 

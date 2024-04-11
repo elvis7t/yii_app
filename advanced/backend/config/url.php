@@ -7,6 +7,12 @@ return [
     'login' => 'site/login',
     'logout' => 'site/logout',
     '' => 'site/index',
+    'user' => 'user/index',
+    'user/create' => 'user/create',
+    'user/view' => 'user/view',
+    'user/update' => 'user/update',
+    'user/delete' => 'user/delete',
+    
     'project/index'=> 'project/index',   
     'project/create'=> 'project/create',
     'project/update' => 'project/update',

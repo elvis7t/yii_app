@@ -27,7 +27,8 @@
                         'items' => [
                             ['label' => 'Project Page', 'url' => ['/project/index'], 'active' => $this->context->route === 'project/index' || $this->context->route === 'project/update' || $this->context->route === 'project/view' || $this->context->route === 'project/details', 'iconStyle' => 'far'],
                             ['label' => 'Project Create', 'url' => ['/project/create'], 'iconStyle' => 'far'],
-                        ]
+                        ],
+                        'visible' => Yii::$app->user->can('manageProjects'),
                     ],
                     [
                         'label' => 'Testimonials',
@@ -35,7 +36,8 @@
                         'items' => [
                             ['label' => 'Testimonial Page', 'url' => ['/testimonial/index'], 'active' => $this->context->route === 'testimonial/index' || $this->context->route === 'testimonial/update' || $this->context->route === 'testimonial/view', 'iconStyle' => 'far'],
                             ['label' => 'Testimonial Create', 'url' => ['/testimonial/create'], 'iconStyle' => 'far'],
-                        ]
+                        ],
+                        'visible' => Yii::$app->user->can('manageTestimonials'),
                     ],
                     [
                         'label' => 'Blog',
@@ -44,11 +46,18 @@
                             ['label' => 'Blog Page', 'url' => ['/blog/post/index'], 'active' => $this->context->route === 'blog/post/index' || $this->context->route === 'blog/post/update' || $this->context->route === 'blog/post/view', 'iconStyle' => 'far'],
                             ['label' => 'Post Create', 'url' => ['/blog/post/create'], 'iconStyle' => 'far'],
                         ],
+                        'visible' => Yii::$app->user->can('manageBlog'),
                     ],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+                    [
+                        'label' => 'Users',
+                        'icon' => 'user',
+                        'items' => [
+                            ['label' => 'User Page', 'url' => ['/user/index'], 'active' => $this->context->route === 'user/index' || $this->context->route === 'user/update' || $this->context->route === 'user/view', 'iconStyle' => 'far'],
+                            ['label' => 'User Create', 'url' => ['/user/create'], 'iconStyle' => 'far'],
+                        ],
+                        'visible' => Yii::$app->user->can('manageBlog'),
+                    ]
+                   
                 ],
             ]);
             ?>
