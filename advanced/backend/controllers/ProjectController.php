@@ -5,7 +5,6 @@ namespace backend\controllers;
 use Yii;
 use yii\helpers\Json;
 use yii\web\Controller;
-use yii\web\UploadedFile;
 use backend\models\Project;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -31,8 +30,13 @@ class ProjectController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
+                        'actions' => ['view'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['viewProject'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['manageProjects'],
                     ],
                 ],
             ],

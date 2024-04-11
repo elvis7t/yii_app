@@ -21,9 +21,22 @@ class Module extends \yii\base\Module
 
         // custom initialization code goes here
     }
-    
+
     public function behaviors()
     {
-        return parent::behaviors();
-    } 
+        return array_merge(
+            parent::behaviors(),
+            [
+                'access' => [
+                    'class' => \yii\filters\AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['manageBlog'],
+                        ],
+                    ],
+                ],
+            ]
+        );
+    }
 }

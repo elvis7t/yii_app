@@ -55,4 +55,20 @@ https://www.yiiframework.com/extension/yiisoft/yii2-imagine/doc/api/2.3
 https://www.yiiframework.com/extension/yiisoft/yii2-imagine/doc/api/2.3/yii-imagine-image
 >_ composer require --prefer-dist yiisoft/yii2-imagine
 
+*Datatable
+https://github.com/fedemotta/yii2-widget-datatables
+>_ composer require --prefer-dist fedemotta/yii2-widget-datatables "*"
+
+https://github.com/NullRefExcep/yii2-datatables/blob/master/src/DataTable.php
+>_ composer require nullref/yii2-datatables
+
+#Migrations
 php yii migrate/create create_post_table --fields="title:string:notNull,body:text:notNull,slug:text:notNull,is_published:boolean:notNull,create_at:date:notNull,update_at:date:notNull"
+
+#RBCA
+php yii migrate --migrationPath=@yii/rbac/migrations 
+php yii migrate/create init_rbac
+
+#DOTENV
+https://github.com/vlucas/phpdotenv
+composer require vlucas/phpdotenv

@@ -2,6 +2,8 @@
 
 namespace common\helpers;
 
+use DateTime;
+
 class DateHelper
 {
     public static function brDate($date)
@@ -12,10 +14,8 @@ class DateHelper
         }
     }
     public static function usDate($date)
-    {
-        $format = 'yyyy-MM-dd';
-        if ($date) {
-            return \DateTimeImmutable::createFromFormat('Y-m-d', $date)->format($format);
-        }
+    {       
+        return DateTime::createFromFormat('d-m-Y', $date)->format('Y-m-d');
+
     }
 }

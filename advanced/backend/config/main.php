@@ -49,6 +49,9 @@ return [
             'enableStrictParsing' => true,
             'rules' => require(__DIR__ . '/url.php'),
         ],
+        'formatter' => [
+            'dateFormat' => 'dd-MM-yyyy',        
+        ],
 
     ],
     'params' => $params,
