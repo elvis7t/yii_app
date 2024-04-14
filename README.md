@@ -55,10 +55,16 @@ Clone the repository locally:
 git clone https://github.com/elvis7t/yii_app.git
 ```
 Access the project folder
+Change the .env file example
+to .env in
 ```bash
-cd yii_app
+cd yii_app/advanced
 ```
+Return to the root folder
 
+```bash
+cd..
+```
 Start containers: 🐋
 
 ```bash
