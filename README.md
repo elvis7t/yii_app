@@ -19,11 +19,28 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
 This project consists of two applications: a panel for managing users, projects, testimonials and blog, and a project portfolio website
 
+### ✨ Features
+- [x] List all users
+- [x] Register user
+- [x] Delete user
+- [x] Change user
+- [x] List all projects and images
+- [x] Register project and images
+- [x] Delete project and images
+- [x] Change project and images
+- [x] List all testimonials and user image
+- [x] Register testimonial and user image
+- [x] Delete testimonials and user image
+- [x] Change testimonials and user image
+- [x] List all posts blog
+- [x] Register post blog
+- [x] Delete post blog
+- [x] Change post blog
+
 ## 🚀 Starting
 
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
 
-Consult **[Installation](#-instalation** to learn how to implement the project.
 
 ### ✔️ Prerequisites
 
@@ -92,7 +109,7 @@ yes
 #### PhpMyAdmin
 ```
 user: root
-pass:  root
+pass: root
 ```
 ## Panel
 
@@ -109,6 +126,17 @@ Blog  access🔒
 email: blogmanager@system.com
 pass 123123
 ```
+### 🤖 Technologies
+
+The following 🔌 plugins were used to build the project::
+
+- [DataPicker yii2-jui](https://www.yiiframework.com/extension/yiisoft/yii2-jui)
+- [Krajee FileInput](https://plugins.krajee.com/file-input#translations)
+- [Krajee Star-rating](https://plugins.krajee.com/widget-details/star-rating)
+- [yii2-imagine](https://www.yiiframework.com/extension/yiisoft/yii2-imagine)
+- [fedemotta/yii2-widget-datatables](https://github.com/fedemotta/yii2-widget-datatables)
+- [nullref/yii2-datatables](https://github.com/NullRefExcep/yii2-datatables/blob/master/src/DataTable.php)
+- [DOTENV](https://github.com/vlucas/phpdotenv)
 
 ## 📝 Notes 
 Make sure you have ports 82, 85, and 8080 available on your local system to access the Yii dashboard and app.
