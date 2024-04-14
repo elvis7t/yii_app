@@ -70,11 +70,9 @@ class UserController extends Controller
 
         if (Yii::$app->request->post()) {
             $post = Yii::$app->request->post();
-
-            $username = ArrayHelper::getValue($post, 'User.username');
-            $email = ArrayHelper::getValue($post, 'User.email');
-            $model->username = $username;
-            $model->email = $email;
+            $model->name = ArrayHelper::getValue($post, 'User.name');
+            $model->username = ArrayHelper::getValue($post, 'User.username');
+            $model->email = ArrayHelper::getValue($post, 'User.email');
             $model->status = ArrayHelper::getValue($post, 'User.status');
             $model->password = ArrayHelper::getValue($post, 'User.password');
             $model->setPassword($model->password);

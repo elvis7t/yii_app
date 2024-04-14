@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-        <img src="<?= $assetDir ?>/img/AdminLTELogo.png" alt="My Portifolio Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="<?= $assetDir ?>/img/AdminLTELogo.png" alt="Panel Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Panel</span>
     </a>
 
@@ -13,7 +13,7 @@
                 <img src="<?= $assetDir ?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?= Yii::$app->user->identity->username ?></a>
+                <a href="#" class="d-block"><?= Yii::$app->user->identity->name ?></a>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                             ['label' => 'User Page', 'url' => ['/user/index'], 'active' => $this->context->route === 'user/index' || $this->context->route === 'user/update' || $this->context->route === 'user/view', 'iconStyle' => 'far'],
                             ['label' => 'User Create', 'url' => ['/user/create'], 'iconStyle' => 'far'],
                         ],
-                        'visible' => Yii::$app->user->can('manageBlog'),
+                        'visible' => Yii::$app->user->can('admin'),
                     ]
                    
                 ],

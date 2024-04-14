@@ -26,20 +26,20 @@ class ProjectController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'actions' => ['view'],
-                        'allow' => true,
-                        'roles' => ['viewProject'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['manageProjects'],
-                    ],
-                ],
-            ],
+            // 'access' => [
+            //     'class' => AccessControl::class,
+            //     'rules' => [
+            //         [
+            //             'actions' => ['view'],
+            //             'allow' => true,
+            //             'roles' => ['viewProject'],
+            //         ],
+            //         [
+            //             'allow' => true,
+            //             'roles' => ['admin'],
+            //         ],
+            //     ],
+            // ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -70,6 +70,7 @@ class ProjectController extends Controller
         $searchModel = new TestimonialSearch();
         $searchModel->project_id = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
         return $this->render('details/index', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,

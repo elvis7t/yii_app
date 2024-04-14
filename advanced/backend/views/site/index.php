@@ -42,7 +42,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageProjects') ? '' : 'd-none'?>">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Project::find()->count(),
                 'text' => 'Projects',
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'linkUrl' => '/project/index',
             ]) ?>
         </div>        
-        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageTestimonials') ? '' : 'd-none'?>">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Testimonial::find()->count(),
                 'text' => 'Testimonials',
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'linkUrl' => '/testimonial/index',
             ]) ?>
         </div>        
-        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageBlog') ? '' : 'd-none'?>">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Post::find()->count(),
                 'text' => 'Posts',

@@ -23,9 +23,8 @@ return [
     'project/view' => 'project/view',
     'project/view<id:\d+>' => 'project/view',        
     'project/details/<id:\d+>' => 'project/details',
-    'project/details' => 'project/details',
-    'project/delete' => 'project/delete',
-    
+    // 'project/details' => 'project/details',
+    'project/delete' => 'project/delete',    
     
     'testimonial/index'=> 'testimonial/index',
     'testimonial/create'=> 'testimonial/create',

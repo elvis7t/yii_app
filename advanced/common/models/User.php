@@ -14,6 +14,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property string $username
+ * @property string $name
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $verification_token
@@ -60,10 +61,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],  
-            ['username', 'unique', 'message' => 'Nome de usuário já está em uso.'],
-            ['email', 'unique', 'message' => 'Endereço de e-mail já está em uso.'],          
+            [['email', 'password'], 'required'],
+            ['username', 'unique', 'message' => 'Username is already in use.'],
+            ['email', 'unique', 'message' => 'The email address is already in use.'],
+            [['name'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
@@ -95,6 +98,11 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => trim($email), 'status' => self::STATUS_ACTIVE]);
+    }
+
     /**
      * Finds user by password reset token
      *
@@ -119,7 +127,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
