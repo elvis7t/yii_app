@@ -89,7 +89,7 @@ yes
 
 ## Users
 
-#### Banco de dados
+#### PhpMyAdmin
 ```
 user: root
 pass:  root
