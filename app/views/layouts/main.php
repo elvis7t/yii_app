@@ -42,6 +42,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Projects', 'url' => ['/project/index']],
             ['label' => 'Contact', 'url' => ['/site/contact']],                      
+            ['label' => 'Blog', 'url' => ['/blog']],                      
         ]
     ]);
     NavBar::end();

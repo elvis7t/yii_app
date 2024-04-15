@@ -6,8 +6,7 @@ return [
     'login' => 'site/login',
     'privacy-policy' => 'site/privacy-policy',
     'help' => 'help/index',
-    // 'logout' => 'site/logout',
-    '' => 'site/index',
-
-    // 'POST register' => 'site/register'
+    '' => 'site/index',    
+    'blog' => 'blog/post/index',       
+    'blog/post/view/<slug>' => 'blog/post/view',
 ];

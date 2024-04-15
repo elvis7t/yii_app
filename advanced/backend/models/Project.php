@@ -43,7 +43,7 @@ class Project extends \yii\db\ActiveRecord
             [['name', 'tech_stach', 'description', 'start_date', 'end_date'], 'required'],
             [['tech_stach', 'description'], 'string'],
             [['name'], 'string', 'max' => 255],
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10]
+            [['imageFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10]
         ];
     }
 

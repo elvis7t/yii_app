@@ -2,6 +2,7 @@
 
 use common\models\User;
 use backend\models\File;
+use backend\models\Post;
 use backend\models\Project;
 use backend\models\Testimonial;
 use backend\models\ProjectImage;
@@ -41,7 +42,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
     </div>
 
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageProjects') ? '' : 'd-none'?>">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Project::find()->count(),
                 'text' => 'Projects',
@@ -50,13 +51,22 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'linkUrl' => '/project/index',
             ]) ?>
         </div>        
-        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageTestimonials') ? '' : 'd-none'?>">
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => Testimonial::find()->count(),
                 'text' => 'Testimonials',
-                'icon' => 'fas fa-comment-dots',
+                'icon' => 'fas fa-comments',
                 'linkText' => 'View All',
                 'linkUrl' => '/testimonial/index',
+            ]) ?>
+        </div>        
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 <?= Yii::$app->user->can('manageBlog') ? '' : 'd-none'?>">
+            <?= \hail812\adminlte\widgets\SmallBox::widget([
+                'title' => Post::find()->count(),
+                'text' => 'Posts',
+                'icon' => 'fas fa-blog',
+                'linkText' => 'View All',
+                'linkUrl' => '/blog/post/index',
             ]) ?>
         </div>        
     </div>

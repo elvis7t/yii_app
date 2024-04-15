@@ -1,1 +1,5 @@
 /db/data
+advanced/composer.lock
+app/composer.lock
+advanced/.env
+ANOTACOES

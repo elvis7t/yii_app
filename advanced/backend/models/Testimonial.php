@@ -41,7 +41,7 @@ class Testimonial extends \yii\db\ActiveRecord
             [['project_id', 'custumer_image_id', 'rating'], 'integer'],
             [['review'], 'string'],
             [['title', 'custumer_name'], 'string', 'max' => 255],
-            [['custumer_image_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::class, 'targetAttribute' => ['custumer_image_id' => 'id']],
+            [['custumer_image_id'], 'exist', 'skipOnError' => false, 'targetClass' => File::class, 'targetAttribute' => ['custumer_image_id' => 'id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
             ['rating', 'integer', 'min' => 1, 'max' => 5],
@@ -89,9 +89,9 @@ class Testimonial extends \yii\db\ActiveRecord
     {
         $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
     }
+
     public function saveImage()
     {
-
         if ($this->imageFile) {
             $db = Yii::$app->db;
             $transaction = $db->beginTransaction();
@@ -127,7 +127,6 @@ class Testimonial extends \yii\db\ActiveRecord
         return true;
     }
 
-
     public function imageAbsoluteUrls()
     {
         return $this->custumerImage ? $this->custumerImage->absoluteUrl() : [];
@@ -143,8 +142,11 @@ class Testimonial extends \yii\db\ActiveRecord
         $db = Yii::$app->db;
         $transaction = $db->beginTransaction();
         try {
+            if ($this->custumerImage) {
+                $this->custumerImage->deleteInternal();
+            }
             parent::deleteInternal();
-            $this->custumerImage->deleteInternal();
+
             $transaction->commit();
             return true;
         } catch (\Exception $e) {

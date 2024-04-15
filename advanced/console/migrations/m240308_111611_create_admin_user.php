@@ -14,10 +14,12 @@ class m240308_111611_create_admin_user extends Migration
     {
         $authKey = Yii::$app->security->generateRandomString();
         $this->insert('{{%user}}', [
+            'name'=>'Elvis Leite',
             'username' => 'admin',
             'email' => 'admin@system',
             'password_hash' => '$2y$13$UDor903byVlqQoqNQvZUyuqSAOpFHIDQkg/9ZojSgmoeTJhqdbIx6',
             'auth_key' => $authKey,
+            'status' => 10
         ]);
         return true;
     }
