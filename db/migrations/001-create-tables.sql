@@ -285,7 +285,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `name`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
-(1, 'admin', 'Elvis Leite', 'yKDhCKlUu7zBoliGA0lbDuU0UExEbj7_', '$2y$13$UDor903byVlqQoqNQvZUyuqSAOpFHIDQkg/9ZojSgmoeTJhqdbIx6', NULL, 'admin@system', 10, '2024-04-14 13:44:40', '2024-04-14 13:44:40', NULL),
+(1, 'admin', 'Elvis Leite', 'yKDhCKlUu7zBoliGA0lbDuU0UExEbj7_', '$2y$13$UDor903byVlqQoqNQvZUyuqSAOpFHIDQkg/9ZojSgmoeTJhqdbIx6', NULL, 'admin@system.com', 10, '2024-04-14 13:44:40', '2024-04-14 13:44:40', NULL),
 (2, 'Jhon', 'Jhon Doe', 'eLhYvrNCDr9-WLDTrPdDw2H3ANJhnXCz', '$2y$13$/ryjBKIphHH/vzrROmXhOeoMUSXRtTH5dEqLwRd067rIoPJAJy6au', NULL, 'blogmanager@system.com', 10, '2024-04-14 14:00:06', '2024-04-14 14:00:06', NULL);
 
 --

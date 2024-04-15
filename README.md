@@ -55,7 +55,7 @@ Clone the repository locally:
 git clone https://github.com/elvis7t/yii_app.git
 ```
 Access the project folder
-Change the .env file example
+Change the .env example file 
 to .env in
 ```bash
 cd yii_app/advanced
@@ -122,7 +122,7 @@ pass: root
 admin
 ```
 Full access 🔓
-email: admin@system
+email: admin@system.com
 pass 123123
 ```
 jhon
