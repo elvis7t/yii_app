@@ -56,16 +56,10 @@ Clone the repository locally:
 git clone https://github.com/elvis7t/yii_app.git
 ```
 Access the project folder
-Change the .env example file 
-to .env in
 ```bash
-cd yii_app/advanced
+cd yii_app
 ```
-Return to the root folder
 
-```bash
-cd..
-```
 Start containers: 🐋
 
 ```bash
@@ -85,6 +79,7 @@ start the panel:
 php init
 0
 yes
+composer install
 ```
 ---
 
@@ -99,6 +94,7 @@ start the portfolio:
 php init
 0
 yes
+composer install
 ```
 ---
 ### 🔗 *Accesses*
