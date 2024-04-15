@@ -15,10 +15,13 @@ use yii\helpers\Html;
             <a href="<?= Url::home() ?>" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['project/index']) ?>" class="nav-link">Project</a>
+            <a href="<?= Url::to(['/project/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageProjects') ? '' : 'hidden'?>>Project</a>
         </li>        
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= Url::to(['testimonial/index']) ?>" class="nav-link">Testimonial</a>
+            <a href="<?= Url::to(['/testimonial/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageTestimonials') ? '' : 'hidden'?>>Testimonial</a>
+        </li>        
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="<?= Url::to(['/blog/post/index']) ?>" class="nav-link" <?= Yii::$app->user->can('manageBlog') ? '' : 'hidden'?>>Blog</a>
         </li>        
     </ul>
 
@@ -48,41 +51,8 @@ use yii\helpers\Html;
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline"><?= Yii::$app->user->identity->username ?></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <!-- User image -->
-                <li class="user-header bg-primary">
-                    <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-
-                    <p>
-                    <?= Yii::$app->user->identity->username ?>
-                        <small>Member since Mar. 2024</small>
-                    </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                    <div class="row">
-                        <div class="col-4 text-center">
-                            <a href="#">Followers</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Sales</a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <a href="#">Friends</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>                    
-                    <a href="<?= Url::to('/site/logout') ?>" class="btn btn-default btn-flat float-right" data-method="post">Sign out</a>
-                    <a href="<?= Url::to('/site/logout') ?>" class="btn btn-default btn-flat float-right" data-method="post">Sign out</a>
-
-                </li>
-            </ul>
+                <span class="d-none d-md-inline"><?= Yii::$app->user->identity->name ?></span>
+            </a>            
         </li>
         <li class="nav-item">
             <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>

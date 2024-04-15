@@ -44,13 +44,15 @@ YiiAsset::register($this);
         <div class="position-sticky">
             <div class="my-3">
                 <?php foreach ($model->testimonials as $testimony) : ?>
-                    <div class="row mt-4">
+                    <div class="row">
+                        <div class="col-auto">
                         <?php
                         if ($testimony->custumerImage) {
                             echo Html::img($testimony->custumerImage->absoluteUrl(), ['class' => 'direct-chat-img img-circle img-bordered-sm']);
                         }
                         ?>
-                        <a href="*" class="ml-2 mt-2">
+                        </div>
+                        <a href="*" class="col mt-2">
                             <?= $testimony->custumer_name; ?>
                         </a>
                     </div>

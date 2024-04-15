@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'blog' => [
+            'class' => 'backend\modules\blog\Module',
+        ],
+    ], 
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -44,6 +48,9 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'rules' => require(__DIR__ . '/url.php'),
+        ],
+        'formatter' => [
+            'dateFormat' => 'dd-MM-yyyy',        
         ],
 
     ],

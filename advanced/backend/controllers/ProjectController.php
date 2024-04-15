@@ -5,11 +5,11 @@ namespace backend\controllers;
 use Yii;
 use yii\helpers\Json;
 use yii\web\Controller;
-use yii\web\UploadedFile;
 use backend\models\Project;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use common\helpers\DateHelper;
+use yii\filters\AccessControl;
 use backend\models\ProjectImage;
 use backend\models\ProjectSearch;
 use yii\web\NotFoundHttpException;
@@ -26,6 +26,20 @@ class ProjectController extends Controller
     public function behaviors()
     {
         return [
+            // 'access' => [
+            //     'class' => AccessControl::class,
+            //     'rules' => [
+            //         [
+            //             'actions' => ['view'],
+            //             'allow' => true,
+            //             'roles' => ['viewProject'],
+            //         ],
+            //         [
+            //             'allow' => true,
+            //             'roles' => ['admin'],
+            //         ],
+            //     ],
+            // ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -56,6 +70,7 @@ class ProjectController extends Controller
         $searchModel = new TestimonialSearch();
         $searchModel->project_id = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
         return $this->render('details/index', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,

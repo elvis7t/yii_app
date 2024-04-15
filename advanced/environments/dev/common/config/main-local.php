@@ -1,10 +1,11 @@
 <?php
-
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
+$dotenv->load();
 return [
     'components' => [
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=mysql;dbname=portifolio',
+            'dsn' => $_ENV['MYSQL_DSN'],
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',

@@ -2,18 +2,13 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2  Project Template</h1>
+    <h1 align="center">Yii 2 </h1>
     <br>
 </p>
 
-Yii 2  Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
+# [Yii 2](https://www.yiiframework.com/) From Beginner to Expert
+Udemy course :   application best for
 developing complex Web applications with multiple tiers.
-
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
-
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
 
 Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
@@ -21,40 +16,135 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
 [![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
 
-DIRECTORY STRUCTURE
--------------------
+
+This project consists of two applications: a panel for managing users, projects, testimonials and blog, and a project portfolio website
+
+### ✨ Features
+- [x] List all users
+- [x] Register user
+- [x] Delete user
+- [x] Change user
+- [x] List all projects and images
+- [x] Register project and images
+- [x] Delete project and images
+- [x] Change project and images
+- [x] List all testimonials and user image
+- [x] Register testimonial and user image
+- [x] Delete testimonials and user image
+- [x] Change testimonials and user image
+- [x] List all posts blog
+- [x] Register post blog
+- [x] Delete post blog
+- [x] Change post blog
+- [x] RBCA
+
+## 🚀 Starting
+
+These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
+
+
+### ✔️ Prerequisites
+
+* Docker installed and configured
+* Git installed and configured
+
+### 🛠️ Installation
+
+Clone the repository locally:
+
+```bash
+git clone https://github.com/elvis7t/yii_app.git
+```
+Access the project folder
+```bash
+cd yii_app
+```
+
+Start containers: 🐋
+
+```bash
+docker-compose up -d
+```
+---
+### ⚙️ Settings
+
+### 1. *Configuring the dashboard* 📶
+Access the panel container:
+```bash
+docker exec -ti panel-container /bin/bash
+```
+start the panel:
+
+```bash
+php init
+0
+yes
+composer install
+```
+---
+
+### 2. *Configuring the portfolio*
+Access the portfolio container: 🌐
+```bash
+docker exec -ti yii-container /bin/bash
+```
+start the portfolio:
+
+```bash
+php init
+0
+yes
+composer install
+```
+---
+### 🔗 *Accesses*
+
+* Access the Panel at:
+[http://localhost:82/](http://localhost:82/)
+* Access the Portfolio at:
+[http://localhost:82/](http://localhost:85/)
+* Access PhpMyAdmin at:
+[http://localhost:8080/](http://localhost:8080/)
+
+
+## Users
+
+#### PhpMyAdmin
+```
+user: root
+pass: root
+```
+## Panel
+
+admin
+```
+Full access 🔓
+email: admin@system.com
+pass 123123
+```
+jhon
 
 ```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
+Blog  access🔒
+email: blogmanager@system.com
+pass 123123
 ```
+### 🤖 Technologies
+
+The following 🔌 plugins were used to build the project::
+
+- [hail812/yii2-adminlte3](https://github.com/muyuym/yii2-adminlte3)
+- [DataPicker yii2-jui](https://www.yiiframework.com/extension/yiisoft/yii2-jui)
+- [Krajee FileInput](https://plugins.krajee.com/file-input#translations)
+- [Krajee Star-rating](https://plugins.krajee.com/widget-details/star-rating)
+- [yii2-imagine](https://www.yiiframework.com/extension/yiisoft/yii2-imagine)
+- [fedemotta/yii2-widget-datatables](https://github.com/fedemotta/yii2-widget-datatables)
+- [nullref/yii2-datatables](https://github.com/NullRefExcep/yii2-datatables/blob/master/src/DataTable.php)
+- [DOTENV](https://github.com/vlucas/phpdotenv)
+
+## 📝 Notes 
+Make sure you have ports 82, 85, and 8080 available on your local system to access the Yii dashboard and app.
+
+
+---
+⌨️ with ❤️ to [Elvis Leite](https://gist.github.com/elvis7t) 😊
