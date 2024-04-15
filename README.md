@@ -71,7 +71,7 @@ docker-compose up -d
 ### 1. *Configuring the dashboard* 📶
 Access the panel container:
 ```bash
-docker exec -ti painel-container /bin/bash
+docker exec -ti panel-container /bin/bash
 ```
 start the panel:
 
