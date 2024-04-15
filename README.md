@@ -36,6 +36,7 @@ This project consists of two applications: a panel for managing users, projects,
 - [x] Register post blog
 - [x] Delete post blog
 - [x] Change post blog
+- [x] RBCA
 
 ## 🚀 Starting
 
