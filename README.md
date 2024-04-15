@@ -137,6 +137,7 @@ pass 123123
 
 The following 🔌 plugins were used to build the project::
 
+- [hail812/yii2-adminlte3](https://github.com/muyuym/yii2-adminlte3)
 - [DataPicker yii2-jui](https://www.yiiframework.com/extension/yiisoft/yii2-jui)
 - [Krajee FileInput](https://plugins.krajee.com/file-input#translations)
 - [Krajee Star-rating](https://plugins.krajee.com/widget-details/star-rating)
