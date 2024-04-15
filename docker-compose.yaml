@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   advanced:
-      container_name: painel-container
+      container_name: panel-container
       build:
         context: ./
         dockerfile: advanced/DOCKERFILE
