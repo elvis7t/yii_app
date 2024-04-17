@@ -147,4 +147,4 @@ Make sure you have ports 82, 85, and 8080 available on your local system to acce
 
 
 ---
-⌨️ with ❤️ to [Elvis Leite](https://gist.github.com/elvis7t) 😊
+⌨️ with ❤️ by [Elvis Leite](https://gist.github.com/elvis7t) 😊
